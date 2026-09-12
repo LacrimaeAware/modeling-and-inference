@@ -1,0 +1,85 @@
+{
+  "evidence_date": "2026-09-12",
+  "files": [
+    {
+      "file": "benchmark-boolode.csv",
+      "sha256": "c415f2214529803f61f0c6bfb54c957f0bb19bc315f2425ec71d3a70072b5c37"
+    },
+    {
+      "file": "benchmark-dream4.csv",
+      "sha256": "48da12330c1a48dc4cc1e338e2c52b7d3ec12b13764104cbf1153d293f2a2d40"
+    },
+    {
+      "file": "brightness-seed-0.json",
+      "sha256": "0d686fecabfa29016ba0a3f0b1db0b07bc8a241d222d77cb182cdacc4ab23eb3"
+    },
+    {
+      "file": "brightness-seed-0.npz",
+      "sha256": "3d87dba419e06c6b14a9a035c7858ae7b3ef3a2747cc9c0f83bda83f6bd0ceb2"
+    },
+    {
+      "file": "brightness-seed-1.json",
+      "sha256": "949dca09c16de7b1ce4701f1d81160863448754316476b3ad7ebb79802fba224"
+    },
+    {
+      "file": "brightness-seed-1.npz",
+      "sha256": "d0c2980a64241bd6da5c91c0e742d092a3b4a198ee2c8b3dd6d2ff6d1d99d79f"
+    },
+    {
+      "file": "brightness-seed-2.json",
+      "sha256": "ea2e92188130d949cbdfd18a3d9f697b709565c8906cf9e28d456aabb5f7a64d"
+    },
+    {
+      "file": "brightness-seed-2.npz",
+      "sha256": "3ab830ca43ad0eb38f2ab22c4b75037b3f0defce127393938fbaa1fc41cd2832"
+    },
+    {
+      "file": "brightness-transfer-parameters.json",
+      "sha256": "3e306a551de1a9c1d53ad8dae95ddae2a221d44cedfc137838edcba6e2546317"
+    },
+    {
+      "file": "brightness-transfer.csv",
+      "sha256": "0a6603896b650f9d8b6f9c19bd9df1d570baa1d168c51188253f348e7d133b5f"
+    },
+    {
+      "file": "classification.json",
+      "sha256": "d2007fc09a5008c0fe40368f11af26f61fdae7dbbd361b82c4de283a871ca8d6"
+    },
+    {
+      "file": "color-discovery.csv",
+      "sha256": "6677ba64a0a6e1e9abb6eda50d72a3acf5edb05c004cf3c5f40ea3db2e97031c"
+    },
+    {
+      "file": "geometry-examples.npz",
+      "sha256": "16993e4aec9eddb86287aec448ae3bf1d7ffcb14835310842a9cb359f1e46cab"
+    },
+    {
+      "file": "input-design.json",
+      "sha256": "1189303126931b97ff3312cdad3a36e6f3f9694d6fa84258105a9cba34bb1baa"
+    },
+    {
+      "file": "network-grid.csv",
+      "sha256": "5a99225deced6c66706c2a730c3abf354cc8bb422e508d89dccf86ec6d4624dd"
+    },
+    {
+      "file": "response-confound.csv",
+      "sha256": "8a917d7c5c665856ad517ce066983dce681fef382ef7912ed27c7a289d7c8f35"
+    },
+    {
+      "file": "response-consistency.json",
+      "sha256": "4f0537047816a6aef859900652ba18f66bd2f95bfe858349ce0fd0a3ab548eb4"
+    },
+    {
+      "file": "response-scaling.csv",
+      "sha256": "7bf63dece19898f662037ddc3d70b5c932045bfba4547331b3fbda232c73dd0c"
+    },
+    {
+      "file": "shape-action-examples.npz",
+      "sha256": "d0a71e8ef1f3446911a1f830442a9601555b92d8ff841c5d47ae555efa01e126"
+    },
+    {
+      "file": "shape-actions.json",
+      "sha256": "1cfb0765262f22cec59551f1803e2d75ef445e6bfe305f6d22f304f3b97e8721"
+    }
+  ]
+}

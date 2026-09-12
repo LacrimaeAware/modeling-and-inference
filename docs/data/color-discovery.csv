@@ -1,0 +1,4 @@
+method,color_cosine,thickness_cosine
+within-class diffs (class labels),0.826,0.657
+raw ICA (no labels),0.716,0.671
+handed the direction,1.0,1.0

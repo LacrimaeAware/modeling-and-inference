@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent studies of biological parameter inference, gene-network recovery, and image representations, with interactive figures and reproducible measurements.">
+<meta name="color-scheme" content="light"><title>Build the portfolio · Modeling and Inference</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23252e30'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Georgia' font-size='29' fill='%23f5f3ec'%3Em%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./vendor/katex/katex.min.css"><link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script></head>
+<body data-base="./"><a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="mast-inner wrap"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="./index.html#rates">Studies</a><a href="./methods.html">Methods & data</a></nav></div></header>
+<main class="note readme-content" id="main"><a class="back" href="index.html">← Portfolio overview</a><h1>Build the portfolio</h1>
+<p>Requires Python 3.11 or later and Node.js 18 or later. From the repository root:</p>
+<pre><code class="language-sh">python -m pip install -r requirements.txt
+python scripts/generate.py
+python scripts/build.py
+python scripts/check.py
+node --check site/app.js
+python -m http.server 4181 --bind 127.0.0.1 --directory dist
+</code></pre>
+<p>Open http://127.0.0.1:4181/. The generator recreates the scientific figures and interactive data from the included results. It also checks the simple cascade against an independent ODE integration. The build renders the repository preview directly from README.md.</p>
+<p>The presentation is plain HTML, CSS and JavaScript. Author pages in <code>site/</code>, figures in <code>scripts/generate.py</code>, and the repository front page in <code>README.md</code>. The generated <code>dist/</code> directory is ignored by Git. <code>python scripts/build.py --pages</code> also prepares <code>docs/</code> for GitHub Pages on the main branch.</p>
+<p>Mathematics is typeset at build time using the bundled KaTeX library in <code>site/vendor/katex/</code>; the site needs no external script or font service.</p>
+<p>Regenerating the presentation does not retrain the original encoders or rerun all biological experiments. Selected result tables and model outputs are included; the full working research projects remain separate. See <a href="provenance.html">PROVENANCE.md</a> for the source of each dataset.</p></main>
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Independent research in modeling and inference.</p></div><div class="footer-right"><a href="./methods.html">Methods & credits</a><a href="./readme.html">GitHub README</a><p>Developed with AI assistance in implementation, analysis, and editing.<br>Unrefereed work. External priority is unestablished.</p></div></div></footer>
+</body></html>

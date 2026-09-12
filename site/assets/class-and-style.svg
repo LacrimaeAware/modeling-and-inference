@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 410" role="img" aria-labelledby="title desc">
+  <title id="title">Class identity and variation within a class</title>
+  <desc id="desc">Conceptual research question. A three and a five can each have a regular or uneven stroke. Learn a variation among threes, then test whether the same kind of variation can be identified among fives. These drawings illustrate the aim, not recovered style labels.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#367869"/></marker></defs>
+  <rect width="680" height="410" fill="#fcfbf7"/>
+  <g font-family="system-ui, sans-serif" font-size="17" fill="#65706f" text-anchor="middle"><text x="198" y="36">Regular stroke</text><text x="467" y="36">Uneven stroke</text></g>
+  <g fill="#edf1e9"><rect x="119" y="62" width="160" height="128" rx="4"/><rect x="388" y="62" width="160" height="128" rx="4"/><rect x="119" y="247" width="160" height="128" rx="4"/><rect x="388" y="247" width="160" height="128" rx="4"/></g>
+  <g fill="#252e30" font-family="system-ui, sans-serif" font-size="18"><text x="20" y="132">Class 3</text><text x="20" y="318">Class 5</text></g>
+  <g fill="none" stroke="#252e30" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M176 90 C225 76 234 122 195 126 C241 123 227 172 174 161"/>
+    <path d="M444 91 L454 85 466 90 478 85 486 94 490 107 481 116 486 123 465 128 479 130 485 140 489 150 480 159 470 158 459 166 443 162"/>
+    <path d="M224 273 H176 V309 C224 298 239 346 204 350 C192 353 180 349 174 343"/>
+    <path d="M491 274 L478 271 466 276 445 273 448 284 442 297 447 309 460 305 474 311 485 309 492 321 490 335 482 347 470 347 460 353 451 345 442 344"/>
+  </g>
+  <g stroke="#367869" stroke-width="1.7" fill="none" marker-end="url(#arrow)"><path d="M296 124 H369"/><path d="M296 309 H369" stroke-dasharray="5 5"/><path d="M581 129 Q620 213 581 304" stroke-dasharray="5 5"/></g>
+  <g fill="#367869" font-family="system-ui, sans-serif" font-size="15" text-anchor="middle"><text x="333" y="104">learn</text><text x="333" y="289">test</text><text x="330" y="220">Can the same kind of variation carry across classes?</text></g>
+</svg>

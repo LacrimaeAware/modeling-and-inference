@@ -1,0 +1,18 @@
+{
+  "dataset": "RPE1",
+  "metric": "split-half edge Spearman",
+  "methods": [
+    {
+      "method": "raw",
+      "split_half_edge_spearman": 0.34519964233139505
+    },
+    {
+      "method": "old_I_plus_response_inverse",
+      "split_half_edge_spearman": 0.09202293704473331
+    },
+    {
+      "method": "modular_response",
+      "split_half_edge_spearman": 0.11494943542283988
+    }
+  ]
+}

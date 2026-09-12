@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent studies of biological parameter inference, gene-network recovery, and image representations, with interactive figures and reproducible measurements.">
+<meta name="color-scheme" content="light"><title>Data provenance · Modeling and Inference</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23252e30'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Georgia' font-size='29' fill='%23f5f3ec'%3Em%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./vendor/katex/katex.min.css"><link rel="stylesheet" href="./style.css"><script type="module" src="./app.js"></script></head>
+<body data-base="./"><a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="mast-inner wrap"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="./index.html#rates">Studies</a><a href="./methods.html">Methods & data</a></nav></div></header>
+<main class="note readme-content" id="main"><a class="back" href="index.html">← Portfolio overview</a><h1>Data provenance</h1>
+<p>The portfolio selects recorded evidence from three independent research projects. The published papers cited on the study pages supply model, method, and dataset context.</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Included data</th>
+<th>Origin and meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>input-design.json</td>
+<td>Mechanistic model inference, experiment 10. Final selection counts from the wider-bound fit audit; nominal generating and refitted rival trajectories independently integrated with the second-order DOP853 formulation. Includes both nominal and basal-preserving count tables.</td>
+</tr>
+<tr>
+<td>network-grid.csv</td>
+<td>GRN experiment 28: nine shared-component weights, eight signal/noise levels, four methods, five seeds per cell, 100 genes.</td>
+</tr>
+<tr>
+<td>benchmark-dream4.csv, benchmark-boolode.csv</td>
+<td>GRN experiment 33: per-dataset average precision on common directed non-self reference edges.</td>
+</tr>
+<tr>
+<td>response-scaling.csv, response-consistency.json</td>
+<td>GRN experiment 42: modular-response controls and aggregate RPE1 split-half consistency. No raw cell measurements are included.</td>
+</tr>
+<tr>
+<td>response-confound.csv</td>
+<td>GRN experiment 41: response-strength control summary.</td>
+</tr>
+<tr>
+<td>brightness-seed-*.json and .npz</td>
+<td>Corrected structured-transform study: metrics and saved decoded outputs for three trained encoders, all three held-out bases per seed.</td>
+</tr>
+<tr>
+<td>brightness-transfer.csv, brightness-transfer-parameters.json</td>
+<td>Structured-transform transfer test: six multipliers, two starting brightness levels, 96 new bases, three trained and three random encoders. All 360 method cells and fitted action parameters.</td>
+</tr>
+<tr>
+<td>color-discovery.csv</td>
+<td>Original within-class discovery experiment 15, current saved quick-run scores: 40 requested pairs per shape, PCA 20, ICA 6. Shape labels enter discovery; color labels enter only the alignment score. This is a small exploratory result, not a held-out classification benchmark.</td>
+</tr>
+<tr>
+<td>classification.json</td>
+<td>Corrected structured-transform classification study: ten splits, independent and class-correlated blur, identity separation before transformations.</td>
+</tr>
+<tr>
+<td>geometry-examples.npz</td>
+<td>Seed 0 rerun of the corrected classification study, checked against its saved scores. First held-out 3, 5 and 8; traversals along training covariance directions. All three digit classes are present in fitting.</td>
+</tr>
+<tr>
+<td>shape-actions.json</td>
+<td>Ten-seed controlled brightness and color-rotation experiments. Fit on circles/squares; evaluate on triangles/crosses, including three-step composition.</td>
+</tr>
+<tr>
+<td>shape-action-examples.npz</td>
+<td>Regenerated seed 0 shape outputs, checked against the recorded single-step residuals. The displayed 90° color change composes the fitted 30° rule three times; the comparison adds the fitted average pixel change three times. Error maps share one absolute scale and use unclipped arrays.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The input-design JSON contains plotted trajectories and aggregate counts. It does not contain every noisy fitting run. The image gallery contains saved model outputs; the trained checkpoints are maintained with the original project. Rebuilding these figures reproduces the selected presentation, rather than all original experiments.</p>
+<p>The release includes a machine-readable <a href="data/manifest.json">data manifest</a>. The build check compares each included file against its SHA-256 fingerprint. Source changes should be reviewed in their relevant study before refreshing the manifest or numerical claims.</p>
+<p>Evidence selection: 12 September 2026.</p>
+<p>Math rendering uses KaTeX 0.18.7, distributed with its MIT license in <code>site/vendor/katex/LICENSE</code>. Scientific figures are generated from the included numerical arrays and tables by <code>scripts/generate.py</code>.</p></main>
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Independent research in modeling and inference.</p></div><div class="footer-right"><a href="./methods.html">Methods & credits</a><a href="./readme.html">GitHub README</a><p>Developed with AI assistance in implementation, analysis, and editing.<br>Unrefereed work. External priority is unestablished.</p></div></div></footer>
+</body></html>

@@ -1,0 +1,14 @@
+metric,value
+n_genes,651
+syn_netout_repro,0.9977266414071266
+syn_orientation_repro,0.8087179487179487
+rpe1_netout_repro,0.9861826833368492
+rpe1_orientation_repro,0.6190381661349403
+orientation_vs_separable,0.6879215408247666
+netout_vs_potential,0.9836267433338481
+rank1_energy,0.6979071243142126
+separable_own_repro,0.9528157863641734
+asymmetry_frac_explained_by_potentials,0.21038650171781614
+raw_asymmetry_repro,0.43470964134213935
+residual_repro,0.42461027377332977
+residual_orientation_repro,0.6358265390523455

@@ -1,0 +1,509 @@
+{
+  "records": [
+    {
+      "seed": 0,
+      "factor": "brightness",
+      "shift_residual": 0.9623382053784341,
+      "structured_residual": 0.0,
+      "composed_three_step_residual": 0.0,
+      "structured_parameters": 1,
+      "fitted_operator": 1.25,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 0,
+      "factor": "color rotation",
+      "shift_residual": 1.0514284188603393,
+      "structured_residual": 4.166962564063153e-28,
+      "composed_three_step_residual": 4.548947829906042e-28,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229612,
+          0.33333333333332776,
+          -0.24401693585629167
+        ],
+        [
+          -0.24401693585628847,
+          0.9106836025229612,
+          0.33333333333332965
+        ],
+        [
+          0.33333333333333,
+          -0.2440169358562914,
+          0.9106836025229605
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 1,
+      "factor": "brightness",
+      "shift_residual": 0.9554109779374343,
+      "structured_residual": 9.235348529672129e-31,
+      "composed_three_step_residual": 1.3778816298636695e-30,
+      "structured_parameters": 1,
+      "fitted_operator": 1.2499999999999998,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 1,
+      "factor": "color rotation",
+      "shift_residual": 1.023527760221786,
+      "structured_residual": 1.101975884914963e-27,
+      "composed_three_step_residual": 1.2667557227734801e-27,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229564,
+          0.33333333333333737,
+          -0.24401693585629824
+        ],
+        [
+          -0.24401693585629247,
+          0.9106836025229569,
+          0.3333333333333402
+        ],
+        [
+          0.3333333333333417,
+          -0.24401693585629594,
+          0.9106836025229552
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 2,
+      "factor": "brightness",
+      "shift_residual": 0.9641293890869714,
+      "structured_residual": 9.005796022615151e-31,
+      "composed_three_step_residual": 1.4177042183936728e-30,
+      "structured_parameters": 1,
+      "fitted_operator": 1.2500000000000002,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 2,
+      "factor": "color rotation",
+      "shift_residual": 1.0102683728284587,
+      "structured_residual": 3.530100293919923e-27,
+      "composed_three_step_residual": 4.313514097358346e-27,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229494,
+          0.3333333333333523,
+          -0.24401693585630244
+        ],
+        [
+          -0.24401693585630135,
+          0.9106836025229491,
+          0.33333333333335435
+        ],
+        [
+          0.33333333333335324,
+          -0.2440169358563041,
+          0.9106836025229487
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 3,
+      "factor": "brightness",
+      "shift_residual": 0.9714253728575452,
+      "structured_residual": 0.0,
+      "composed_three_step_residual": 0.0,
+      "structured_parameters": 1,
+      "fitted_operator": 1.25,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 3,
+      "factor": "color rotation",
+      "shift_residual": 1.019011303028231,
+      "structured_residual": 6.364371226530686e-27,
+      "composed_three_step_residual": 8.082801869677785e-27,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229437,
+          0.3333333333333658,
+          -0.24401693585630532
+        ],
+        [
+          -0.24401693585631132,
+          0.9106836025229431,
+          0.33333333333336285
+        ],
+        [
+          0.3333333333333615,
+          -0.2440169358563068,
+          0.9106836025229448
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 4,
+      "factor": "brightness",
+      "shift_residual": 0.9749063264094905,
+      "structured_residual": 9.484879852383992e-31,
+      "composed_three_step_residual": 1.3469067160521424e-30,
+      "structured_parameters": 1,
+      "fitted_operator": 1.2500000000000002,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 4,
+      "factor": "color rotation",
+      "shift_residual": 1.0447851035703795,
+      "structured_residual": 5.5136206855207484e-27,
+      "composed_three_step_residual": 5.9944561149918375e-27,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229476,
+          0.3333333333333546,
+          -0.2440169358563066
+        ],
+        [
+          -0.24401693585630302,
+          0.9106836025229494,
+          0.3333333333333523
+        ],
+        [
+          0.33333333333335713,
+          -0.24401693585629985,
+          0.9106836025229482
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 5,
+      "factor": "brightness",
+      "shift_residual": 0.9627363918779507,
+      "structured_residual": 9.04405088304311e-31,
+      "composed_three_step_residual": 1.3963198814821868e-30,
+      "structured_parameters": 1,
+      "fitted_operator": 1.2500000000000002,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 5,
+      "factor": "color rotation",
+      "shift_residual": 1.088520789095021,
+      "structured_residual": 9.4772017530676e-29,
+      "composed_three_step_residual": 8.211595745591707e-29,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229599,
+          0.33333333333333115,
+          -0.24401693585629244
+        ],
+        [
+          -0.2440169358562906,
+          0.91068360252296,
+          0.33333333333333215
+        ],
+        [
+          0.33333333333333226,
+          -0.24401693585629228,
+          0.9106836025229595
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 6,
+      "factor": "brightness",
+      "shift_residual": 0.9558457538424823,
+      "structured_residual": 0.0,
+      "composed_three_step_residual": 0.0,
+      "structured_parameters": 1,
+      "fitted_operator": 1.25,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 6,
+      "factor": "color rotation",
+      "shift_residual": 0.9963006062266291,
+      "structured_residual": 9.445643342468714e-28,
+      "composed_three_step_residual": 9.270523585073707e-28,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229589,
+          0.33333333333333365,
+          -0.24401693585629183
+        ],
+        [
+          -0.24401693585629416,
+          0.91068360252296,
+          0.33333333333332965
+        ],
+        [
+          0.33333333333333176,
+          -0.24401693585628867,
+          0.9106836025229607
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 7,
+      "factor": "brightness",
+      "shift_residual": 0.9803074046483322,
+      "structured_residual": 0.0,
+      "composed_three_step_residual": 0.0,
+      "structured_parameters": 1,
+      "fitted_operator": 1.25,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 7,
+      "factor": "color rotation",
+      "shift_residual": 1.1884071880873301,
+      "structured_residual": 2.0278801603220195e-26,
+      "composed_three_step_residual": 2.4185782057111859e-26,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229371,
+          0.3333333333333795,
+          -0.24401693585630985
+        ],
+        [
+          -0.2440169358563181,
+          0.9106836025229365,
+          0.33333333333337556
+        ],
+        [
+          0.3333333333333733,
+          -0.24401693585631307,
+          0.9106836025229387
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 8,
+      "factor": "brightness",
+      "shift_residual": 0.9700743271760446,
+      "structured_residual": 0.0,
+      "composed_three_step_residual": 0.0,
+      "structured_parameters": 1,
+      "fitted_operator": 1.25,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 8,
+      "factor": "color rotation",
+      "shift_residual": 1.0353588568622412,
+      "structured_residual": 3.5521145607557253e-26,
+      "composed_three_step_residual": 4.2408221541905536e-26,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229279,
+          0.3333333333333953,
+          -0.24401693585632428
+        ],
+        [
+          -0.24401693585632236,
+          0.9106836025229276,
+          0.3333333333333984
+        ],
+        [
+          0.33333333333339676,
+          -0.24401693585632603,
+          0.9106836025229268
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 9,
+      "factor": "brightness",
+      "shift_residual": 1.0008489974799917,
+      "structured_residual": 8.97646416272307e-31,
+      "composed_three_step_residual": 1.3678180960406852e-30,
+      "structured_parameters": 1,
+      "fitted_operator": 1.2500000000000002,
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    },
+    {
+      "seed": 9,
+      "factor": "color rotation",
+      "shift_residual": 1.1342554268201117,
+      "structured_residual": 4.721847263774857e-26,
+      "composed_three_step_residual": 5.458976809242784e-26,
+      "structured_parameters": 9,
+      "fitted_operator": [
+        [
+          0.9106836025229236,
+          0.33333333333340304,
+          -0.24401693585633086
+        ],
+        [
+          -0.24401693585632378,
+          0.9106836025229232,
+          0.3333333333334092
+        ],
+        [
+          0.3333333333334078,
+          -0.24401693585633244,
+          0.9106836025229212
+        ]
+      ],
+      "training_shapes": [
+        "circle",
+        "square"
+      ],
+      "test_shapes": [
+        "triangle",
+        "cross"
+      ]
+    }
+  ],
+  "seeds": 10,
+  "images_per_split": 24,
+  "metric": "squared error / squared true edit size in full RGB image space",
+  "fit": "paired source/target images; no factor-parameter labels",
+  "scope": "Known linear actions on controlled images; not a learned-encoder benchmark"
+}

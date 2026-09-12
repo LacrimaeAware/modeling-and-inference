@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Independent studies of biological parameter inference, gene-network recovery, and image representations, with interactive figures and reproducible measurements.">
+<meta name="color-scheme" content="light"><title>Biological mechanisms · Modeling and Inference</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23252e30'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Georgia' font-size='29' fill='%23f5f3ec'%3Em%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../vendor/katex/katex.min.css"><link rel="stylesheet" href="../style.css"><script type="module" src="../app.js"></script></head>
+<body data-base="../"><a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="mast-inner wrap"><a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="../index.html#rates">Studies</a><a href="../methods.html">Methods & data</a></nav></div></header>
+<main class="note" id="main">
+  <a class="back" href="../index.html#rates">← Back to the studies</a>
+  <p class="eyebrow">01 · Mechanistic model inference</p>
+  <h1>A more revealing experiment for two biological mechanisms.</h1>
+  <p class="standfirst">Three input pulses help identify which production step is being slowed, using the same number of simulated protein measurements and the same total input.</p>
+  <p>Cells make mRNA, then use it to make protein. Feedback can slow either step. <a href="https://doi.org/10.1039/D2MO00222A">Ryzowicz &amp; Yildirim (2023)</a> compare how these mechanisms affect protein dynamics. This study asks a further question: when both models can adjust their rates to fit the data, which input makes the correct mechanism easier to identify?</p>
+  <h2>The result</h2>
+  <div class="table-scroll"><table><thead><tr><th>True feedback mechanism</th><th>Constant input</th><th>Three pulses</th></tr></thead><tbody><tr><td>Slows mRNA production</td><td>83 / 100</td><td><strong>100 / 100</strong></td></tr><tr><td>Slows protein production</td><td>61 / 100</td><td><strong>99 / 100</strong></td></tr></tbody></table></div>
+  <p>Correct model selections in 100 noisy simulations per condition. Every experiment lasts 300 minutes and observes protein 80 times. Both candidate models refit four parameters. The pulse schedule alternates twice the reference input with zero input every 50 minutes, preserving the total input of the constant schedule.</p>
+  <figure><a href="../assets/input-design.svg" title="Open full-size figure"><img src="../assets/input-design.svg" alt="Correct-selection counts and uncertainty intervals for constant versus pulsed transcription input, for both generating mechanisms." width="1200" height="560"></a><figcaption>Noise SD is 3% of each mechanism's constant-input peak, fixed across its two protocols. Error bars show 95% Wilson intervals for simulation frequency. Results use the final wider-bound fit audit.</figcaption></figure>
+  <h2>Why the input helps</h2>
+  <p>Eliminating the unobserved mRNA state produces an equation for protein alone. Translational feedback contributes an extra term that depends on how fast the protein level is changing. That term vanishes at equilibrium. Repeated rises and falls make the difference between the mechanisms more visible.</p>
+  <p>A screen compared five equal-input schedules across both mechanisms and three feedback strengths. Three pulses gave the largest worst-case separation within that menu. Repeated trials with added noise then tested how often the correct model was selected. This applies the established idea of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2873315/">designing experiments to discriminate between biochemical models</a> to this model family.</p>
+  <p>An additional pulse comparison keeps basal transcription active. Selection improves in all four tested conditions, with a small improvement in one. The <a href="../methods.html#rates">methods page</a> gives the full counts and assumptions.</p>
+  <h2>A mechanism and its individual rates are different questions</h2>
+  <p>The earlier analysis identifies an exact production-rate trade-off. Multiply the mRNA production rate by a factor and divide the translation rate by the same factor: the protein trace stays unchanged. This symmetry persists under every prescribed input in these models. Measuring mRNA supplies information about the separate rates.</p>
+    <div class="experiment rate-experiment">
+      <div class="experiment-heading"><span class="live-dot"></span><strong>Change the rates. Compare the observations.</strong><span class="small-label">Simulated model</span></div>
+      <div class="rate-flow" aria-label="Gene expression has two production steps">
+        <div class="molecule">Gene<small>instructions</small></div><div class="flow-arrow"><span>transcription</span><b>→</b><output id="km-value">2.08 / min</output></div><div class="molecule">mRNA<small>intermediate</small></div><div class="flow-arrow"><span>translation</span><b>→</b><output id="kp-value">3.85 / min</output></div><div class="molecule">Protein<small>output</small></div>
+      </div>
+      <div class="rate-tools">
+        <label for="rate-scale">Rate trade-off <output id="scale-value">2× / ½×</output><input id="rate-scale" type="range" min="-2" max="2" step="0.02" value="1" aria-describedby="rate-help"></label>
+        <button id="play-rates" class="subtle-button" aria-pressed="false">▶ Animate</button>
+      </div>
+      <div class="segmented" role="group" aria-label="Observed molecules"><button data-channel="protein" aria-pressed="true">Protein only</button><button data-channel="both" aria-pressed="false">Add mRNA measurement</button></div>
+      <div id="rate-charts" class="rate-charts"><img class="fallback" src="../assets/rate-ambiguity.svg" alt="The protein traces coincide for two rate settings; their mRNA traces differ." width="1000" height="350"></div>
+      <div class="legend"><span><i class="reference"></i>Reference rates</span><span><i class="alternative"></i>Changed rates</span></div>
+      <p class="experiment-verdict" id="rate-verdict" aria-live="polite">Protein alone cannot distinguish these rate settings.</p>
+      <p class="fineprint" id="rate-help">Traces relative to each reference peak. M1 model · Fixed decay rates · Zero initial concentrations.</p>
+    </div>
+  <p>The interactive example uses the simple unregulated cascade. The argument also applies to the two feedback models. An mRNA measurement can help separate rates that protein measurements alone cannot distinguish; the precision depends on when and how accurately it is measured.</p>
+  <h2>Scope</h2>
+  <p>The pulse result is a simulation-based design result at specified generating parameters. It assumes known input delivery, zero initial concentrations, a fixed feedback exponent, and independent Gaussian measurement noise. Independent equations and numerical solvers cross-check the trajectories; multiple starts, differential evolution, and wider-bound refits check the fitting. Biological validation and robustness to delivery delays or correlated noise remain the next research questions.</p>
+  <div class="reading-links"><a href="../data/input-design.json">Counts and plotted trajectories · JSON</a><a href="../methods.html#rates">Equations, assumptions &amp; complete counts</a></div>
+  <div class="note-nav"><a href="../index.html#rates">← Overview</a><a href="gene-networks.html">Gene-network recovery →</a></div>
+</main>
+
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Independent research in modeling and inference.</p></div><div class="footer-right"><a href="../methods.html">Methods & credits</a><a href="../readme.html">GitHub README</a><p>Developed with AI assistance in implementation, analysis, and editing.<br>Unrefereed work. External priority is unestablished.</p></div></div></footer>
+</body></html>
