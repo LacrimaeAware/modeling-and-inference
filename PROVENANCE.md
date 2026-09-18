@@ -24,3 +24,5 @@ The release includes a machine-readable [data manifest](data/manifest.json). The
 Evidence selection: 12 September 2026.
 
 Math rendering uses KaTeX 0.18.7, distributed with its MIT license in `site/vendor/katex/LICENSE`. Scientific figures are generated from the included numerical arrays and tables by `scripts/generate.py`.
+
+The README portfolio preview was captured from the rebuilt homepage on September 17, 2026. Scientific figures retain the recorded data provenance above.

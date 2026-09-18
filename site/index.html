@@ -4,6 +4,7 @@
       <p class="eyebrow">Independent research · Statistics & machine learning</p>
       <h1>How much of a model <br>can the data reveal?</h1>
       <p class="lead">Three studies of how experiments distinguish biological mechanisms, reveal gene connections, and find shared attributes in images. Explore the results, interactive figures, and supporting data.</p>
+      <p class="context-line">Python / SciPy · ODE fitting · SVD and network benchmarks · PyTorch encoders. AI-assisted work, with research direction and review by LacrimaeAware.</p>
     </div>
     <nav class="contents" aria-label="Studies">
       <a href="#rates"><span>01</span><div><strong>Biological mechanisms</strong><small>Designing an input that separates two models.</small></div><b aria-hidden="true">↗</b></a>
@@ -15,7 +16,7 @@
   <section class="study wrap" id="rates">
     <div class="study-copy">
       <p class="eyebrow"><span class="section-number">01</span> Mechanistic model inference</p>
-      <h2>Changing the input<br>reveals the mechanism.</h2>
+      <h2>Pulsed input improves<br>model selection.</h2>
       <p>A cell can regulate protein production at two different steps. Its protein trace can look similar either way. Which experiment makes those explanations easier to tell apart?</p>
       <p class="finding">In the tested simulations, three input pulses raise correct model selection from <strong>61–83 to 99–100 out of 100 trials</strong>, depending on the true mechanism. Duration, sample count, and total input stay fixed.</p>
       <p class="context-line">An experimental-design extension of the gene-expression models in <a href="https://doi.org/10.1039/D2MO00222A">Ryzowicz &amp; Yildirim (2023)</a>.</p>
@@ -56,7 +57,7 @@
   <section class="study wrap" id="representations">
     <div class="study-copy">
       <p class="eyebrow"><span class="section-number">03</span> Structured transforms</p>
-      <h2>Can a style learned from 3s<br>carry over to 5s?</h2>
+      <h2>Which image changes transfer<br>to new examples?</h2>
       <p>A dataset may label a digit as a 3 or a 5, while saying nothing about its slant, thickness, or uneven strokes. Could the variation among examples of one class reveal structure that also appears in another?</p>
       <p class="finding">A recorded experiment finds <strong>color-related variation using shape labels alone</strong>. Further tests show patterns learned from handwritten digits and a brightness rule inside a trained image model.</p>
       <p class="context-line">One concrete encoder result: a fitted brightness rule transfers to 96 new image configurations and six multipliers. The broader question connects to <a href="https://proceedings.mlr.press/v119/locatello20a.html">learning representations from paired changes</a>.</p>
