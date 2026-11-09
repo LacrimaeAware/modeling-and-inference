@@ -1,5 +1,7 @@
 # Build the portfolio
 
+Public pages showcase questions, experiments and recorded results. Keep setup instructions here and detailed numerical checks on the methods page. Use one brief AI disclosure, linked from the footer, rather than repeating credits or ownership explanations throughout the site.
+
 Requires Python 3.11 or later and Node.js 18 or later. From the repository root:
 
 ```sh

@@ -1,6 +1,6 @@
 # Data provenance
 
-The portfolio selects recorded evidence from three independent research projects. The published papers cited on the study pages supply model, method, and dataset context.
+The site collects recorded results from three projects. The papers cited beside the experiments supply model, method and dataset context.
 
 | Included data | Origin and meaning |
 | --- | --- |
@@ -25,4 +25,4 @@ Evidence selection: 12 September 2026.
 
 Math rendering uses KaTeX 0.18.7, distributed with its MIT license in `site/vendor/katex/LICENSE`. Scientific figures are generated from the included numerical arrays and tables by `scripts/generate.py`.
 
-The README portfolio preview was captured from the rebuilt homepage on September 17, 2026. Scientific figures retain the recorded data provenance above.
+The README portfolio preview was captured from the rebuilt homepage on November 9, 2026. Scientific figures retain the recorded data provenance above.

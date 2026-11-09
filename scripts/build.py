@@ -43,13 +43,13 @@ def wrap(content,title,base):
         content=re.sub(r'(<figure>)(<img src="([^"]+)"[^>]*>)',r'\1<a href="\3" title="Open full-size figure">\2</a>',content)
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Independent studies of biological parameter inference, gene-network recovery, and image representations, with interactive figures and reproducible measurements.">
+<meta name="description" content="Experiments with biological models, gene networks and image representations, with interactive figures and recorded results.">
 <meta name="color-scheme" content="light"><title>{html.escape(title)}</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23252e30'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Georgia' font-size='29' fill='%23f5f3ec'%3Em%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="{base}vendor/katex/katex.min.css"><link rel="stylesheet" href="{base}style.css"><script type="module" src="{base}app.js"></script></head>
 <body data-base="{base}"><a class="skip" href="#main">Skip to content</a>
-<header class="mast"><div class="mast-inner wrap"><a class="brand" href="{base}index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="{base}index.html#rates">Studies</a><a href="{base}methods.html">Methods & data</a></nav></div></header>
+<header class="mast"><div class="mast-inner wrap"><a class="brand" href="{base}index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="{base}index.html#rates">Experiments</a><a href="{base}methods.html">Methods & data</a></nav></div></header>
 {content}
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Independent research in modeling and inference.</p></div><div class="footer-right"><a href="{base}methods.html">Methods & credits</a><a href="{base}readme.html">GitHub README</a><p>AI-assisted implementation, analysis and editing.<br>Study pages document assumptions, baselines and recorded measurements.</p></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="{base}methods.html#ai-assistance">AI assistance</a><a href="{base}readme.html">GitHub README</a></div></div></footer>
 </body></html>'''
 
 for path in SITE.glob('*.html'):
