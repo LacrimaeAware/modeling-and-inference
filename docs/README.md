@@ -1,12 +1,10 @@
 # Modeling and Inference
 
-Three computational studies of what measurements reveal about a model: biological mechanisms, gene networks and image representations. Built with Python, SciPy and PyTorch, with interactive figures and selected result data.
+Three projects on what measurements reveal about biological models, gene networks and image representations.
 
 **[Explore the visual portfolio →](https://lacrimaeaware.github.io/modeling-and-inference/)** · [Studies and methods](https://lacrimaeaware.github.io/modeling-and-inference/methods.html)
 
 [![Modeling and Inference: interactive studies of mechanisms, networks and image representations](site/assets/portfolio-preview.png)](https://lacrimaeaware.github.io/modeling-and-inference/)
-
-A model can fit observations while leaving its explanation uncertain. These studies ask what an experiment needs to distinguish competing mechanisms, recover network structure, or reveal a reusable rule inside an image encoder.
 
 | Study | Method and recorded result | Inspect |
 | --- | --- | --- |
@@ -16,7 +14,7 @@ A model can fit observations while leaving its explanation uncertain. These stud
 
 ## Approach and context
 
-The work combines ODE models and parameter fitting in **Python/SciPy**, network simulations and comparative benchmarks, and **PyTorch** image encoders evaluated on separate fitting and test configurations. The portfolio includes interactive figures, saved measurements, and scripts that regenerate its plots.
+The projects use Python, SciPy and PyTorch. Each study includes interactive figures, saved measurements and scripts for rebuilding its plots.
 
 The biological models come from [Ryzowicz & Yildirim (2023)](https://doi.org/10.1039/D2MO00222A). The network study connects to [BEELINE](https://doi.org/10.1038/s41592-019-0690-6) and [modular response analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC130547/); the representation study connects to [learning from paired changes](https://proceedings.mlr.press/v119/locatello20a.html).
 
