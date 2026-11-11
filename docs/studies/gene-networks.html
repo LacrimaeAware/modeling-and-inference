@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Experiments with biological models, gene networks and image representations, with interactive figures and recorded results.">
+<meta name="description" content="Experiments with biological models, gene networks and image representations, with interactive figures and results.">
 <meta name="color-scheme" content="light"><title>Gene-network recovery · Modeling and Inference</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='20' fill='%23252e30'/%3E%3Ctext x='20' y='28' text-anchor='middle' font-family='Georgia' font-size='29' fill='%23f5f3ec'%3Em%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="../vendor/katex/katex.min.css"><link rel="stylesheet" href="../style.css"><script type="module" src="../app.js"></script></head>
 <body data-base="../"><a class="skip" href="#main">Skip to content</a>
@@ -17,7 +17,7 @@
   <p><strong>Result.</strong> At shared mixing weight 0.7 and signal/noise 2, removing the largest component raises normalized average precision from 0.24 to 0.63. With strong specific signal, recovery after component removal remains similar across a wide range of shared-component weights. As the specific signal weakens, both methods lose recovery.</p>
   <h2>Benchmarks against established methods</h2>
   <p>The time-series comparison asks whether a fitted linear prediction rule can match established methods. The dynamical operator maps the current gene-expression profile to the next and uses coefficient sizes as connection scores. It is compared with lagged random forests, LASSO and correlation on the same observations and directed reference edges in simulated DREAM4 and BoolODE networks.</p>
-  <div class="experiment"><div class="experiment-heading"><strong>Ranking true directed connections</strong><span class="small-label">Saved benchmark results</span></div>
+  <div class="experiment"><div class="experiment-heading"><strong>Ranking true directed connections</strong><span class="small-label">Benchmark results</span></div>
     <div class="network-tools"><label for="benchmark-dataset">Dataset<select id="benchmark-dataset"><option value="dream4">DREAM4</option><option value="boolode">BoolODE</option></select></label><p>Average precision is higher when true connections appear near the top of the ranking.</p></div>
     <div class="chart" id="benchmark-chart"><img src="../assets/network-benchmarks.svg" alt="Lagged random forest leads the DREAM4 aggregate and lagged LASSO leads the BoolODE aggregate." width="1050" height="420"></div>
     <p class="experiment-verdict" id="benchmark-caption" aria-live="polite">Five DREAM4 networks and eighteen BoolODE datasets.</p><p class="fineprint">Means across datasets. Fixed configurations; static correlation is a reference comparator. The random forest is a lagged GENIE3-style implementation.</p>
@@ -33,5 +33,5 @@
   <div class="note-nav"><a href="hidden-rates.html">← Hidden rates</a><a href="image-representations.html">Next: image representations →</a></div>
 </main>
 
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="../methods.html#ai-assistance">AI assistance</a><a href="../readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="../readme.html">GitHub README</a></div></div></footer>
 </body></html>
