@@ -6,7 +6,6 @@
 <body data-base="./"><a class="skip" href="#main">Skip to content</a>
 <header class="mast"><div class="mast-inner wrap"><a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="./index.html#rates">Experiments</a><a href="./methods.html">Methods & data</a></nav></div></header>
 <main class="note readme-content" id="main"><a class="back" href="index.html">← Portfolio overview</a><h1>Build the portfolio</h1>
-<p>Public pages showcase questions, experiments and recorded results. Keep setup instructions here and detailed numerical checks on the methods page. Use one brief AI disclosure, linked from the footer, rather than repeating credits or ownership explanations throughout the site.</p>
 <p>Requires Python 3.11 or later and Node.js 18 or later. From the repository root:</p>
 <pre><code class="language-sh">python -m pip install -r requirements.txt
 python scripts/generate.py
@@ -15,9 +14,9 @@ python scripts/check.py
 node --check site/app.js
 python -m http.server 4181 --bind 127.0.0.1 --directory dist
 </code></pre>
-<p>Open http://127.0.0.1:4181/. The generator recreates the scientific figures and interactive data from the included results. It also checks the simple cascade against an independent ODE integration. The build renders the repository preview directly from README.md.</p>
+<p>Open http://127.0.0.1:4181/. The generator creates figures and interactive examples from <code>data/</code>. The build renders the pages and README. The check validates local links and file checksums.</p>
 <p>The presentation is plain HTML, CSS and JavaScript. Author pages in <code>site/</code>, figures in <code>scripts/generate.py</code>, and the repository front page in <code>README.md</code>. The generated <code>dist/</code> directory is ignored by Git. <code>python scripts/build.py --pages</code> also prepares <code>docs/</code> for GitHub Pages on the main branch.</p>
-<p>Mathematics is typeset at build time using the bundled KaTeX library in <code>site/vendor/katex/</code>; the site needs no external script or font service.</p>
-<p>Regenerating the presentation does not retrain the original encoders or rerun all biological experiments. Selected result tables and model outputs are included; the full working research projects remain separate. See <a href="provenance.html">PROVENANCE.md</a> for the source of each dataset.</p></main>
+<p>Mathematics is typeset at build time with KaTeX 0.18.7, bundled in
+<code>site/vendor/katex/</code> with its <a href="vendor/katex/LICENSE">MIT license</a>.</p></main>
 <footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="./methods.html#ai-assistance">AI assistance</a><a href="./readme.html">GitHub README</a></div></div></footer>
 </body></html>

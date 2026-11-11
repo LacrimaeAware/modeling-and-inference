@@ -18,9 +18,9 @@
   <h2>Why the input helps</h2>
   <p>Eliminating the unobserved mRNA state produces an equation for protein alone. Translational feedback contributes an extra term that depends on how fast the protein level is changing. That term vanishes at equilibrium. Repeated rises and falls make the difference between the mechanisms more visible.</p>
   <p>A screen compared five equal-input schedules across both mechanisms and three feedback strengths. Three pulses gave the largest worst-case separation within that menu. Repeated trials with added noise then tested how often the correct model was selected. This applies the established idea of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2873315/">designing experiments to discriminate between biochemical models</a> to this model family.</p>
-  <p>An additional pulse comparison keeps basal transcription active. Selection improves in all four tested conditions, with a small improvement in one. The <a href="../methods.html#rates">methods page</a> gives the full counts and assumptions.</p>
+  <p>An additional pulse comparison keeps basal transcription active. Correct-selection counts rise in all four tested conditions. <a href="../methods.html#rates">Full counts and settings</a>.</p>
   <h2>Identifying mechanisms and estimating rates</h2>
-  <p>The earlier analysis identifies an exact production-rate trade-off. Multiply the mRNA production rate by a factor and divide the translation rate by the same factor: the protein trace stays unchanged. This symmetry persists under every prescribed input in these models. Measuring mRNA supplies information about the separate rates.</p>
+  <p>Identifying the mechanism leaves a separate ambiguity in its production rates. Multiply the mRNA production rate by a factor and divide the translation rate by the same factor: the protein trace stays unchanged under every prescribed input in these models. Measuring mRNA supplies information about the separate rates.</p>
     <div class="experiment rate-experiment">
       <div class="experiment-heading"><span class="live-dot"></span><strong>Change the rates. Compare the observations.</strong><span class="small-label">Simulated model</span></div>
       <div class="rate-flow" aria-label="Gene expression has two production steps">
@@ -37,8 +37,6 @@
       <p class="fineprint" id="rate-help">Traces relative to each reference peak. M1 model · Fixed decay rates · Zero initial concentrations.</p>
     </div>
   <p>The interactive example uses the simple unregulated cascade. The argument also applies to the two feedback models. An mRNA measurement can help separate rates that protein measurements alone cannot distinguish; the precision depends on when and how accurately it is measured.</p>
-  <h2>Scope</h2>
-  <p>These simulations assume known input delivery, zero initial concentrations, a fixed feedback exponent and independent Gaussian measurement noise. How well would the comparison work with delivery delays or correlated noise? Biological validation remains open.</p>
   <div class="reading-links"><a href="../data/input-design.json">Counts and plotted trajectories · JSON</a><a href="../methods.html#rates">Equations, assumptions &amp; complete counts</a></div>
   <div class="note-nav"><a href="../index.html#rates">← Overview</a><a href="gene-networks.html">Gene-network recovery →</a></div>
 </main>

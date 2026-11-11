@@ -13,32 +13,29 @@
 <thead>
 <tr>
 <th>Experiment</th>
-<th>Recorded observation</th>
-<th>Inspect</th>
+<th>Question</th>
+<th>Explore</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Biological mechanisms</td>
-<td>Three input pulses raise correct model selection from <strong>61–83 to 99–100 of 100 simulated trials</strong>, with equal duration, observations, total input and noise scale.</td>
-<td><a href="studies/hidden-rates.html">Experiment</a> · <a href="data/input-design.json">Counts and trajectories</a></td>
+<td>Can changing the input make two feedback mechanisms easier to distinguish?</td>
+<td><a href="studies/hidden-rates.html">Compare input signals</a></td>
 </tr>
 <tr>
 <td>Gene-network recovery</td>
-<td>Remove shared activity and compare recovered connections with a known simulated network. At one setting, the recovery score rises from <strong>0.24 to 0.63</strong>.</td>
-<td><a href="studies/gene-networks.html">Experiment</a> · <a href="data/network-grid.csv">Simulation grid</a></td>
+<td>How does shared gene activity affect the connections inferred from it?</td>
+<td><a href="studies/gene-networks.html">Vary shared activity and noise</a></td>
 </tr>
 <tr>
-<td>Image representations</td>
-<td>Fit a brightness rule inside an image model and test it on <strong>96 new configurations and six multipliers</strong>, across three trained encoders.</td>
-<td><a href="studies/image-representations.html">Experiment</a> · <a href="data/brightness-transfer.csv">Transfer measurements</a></td>
+<td>Image variation</td>
+<td>What differences remain between images with the same digit label?</td>
+<td><a href="studies/image-representations.html#within-class">Inspect digit examples</a></td>
 </tr>
 </tbody>
 </table></div>
-<h2>Approach and context</h2>
-<p>The biological models come from <a href="https://doi.org/10.1039/D2MO00222A">Ryzowicz &amp; Yildirim (2023)</a>. The network study connects to <a href="https://doi.org/10.1038/s41592-019-0690-6">BEELINE</a> and <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC130547/">modular response analysis</a>; the representation study connects to <a href="https://proceedings.mlr.press/v119/locatello20a.html">learning from paired changes</a>.</p>
-<p>The pulse and recovery-map results use simulations. Separate comparisons cover DREAM4 and BoolODE datasets and measured cell responses. Image experiments distinguish finding an attribute from testing a fitted image change.</p>
-<p><a href="methods.html">Methods, data and references</a> · <a href="provenance.html">Data provenance</a> · <a href="development.html">Build locally</a></p>
+<p><a href="methods.html">Methods, data and references</a> · <a href="provenance.html">Data sources</a> · <a href="development.html">Build locally</a></p>
 <p>LacrimaeAware · <a href="methods.html#ai-assistance">AI assistance</a>.</p></main>
 <footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="./methods.html#ai-assistance">AI assistance</a><a href="./readme.html">GitHub README</a></div></div></footer>
 </body></html>

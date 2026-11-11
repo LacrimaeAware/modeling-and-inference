@@ -71,7 +71,7 @@ function recovery(data) {
       out+=`<path d="${path(rows.map(r=>[x(r.rho),y(r.normalized_recovery)]))}" stroke="${color}" stroke-width="2.3" fill="none"/>`;
       rows.forEach(r=>out+=`<circle cx="${x(r.rho)}" cy="${y(r.normalized_recovery)}" r="3.8" fill="${color}"><title>ρ ${r.rho}; signal/noise ${snr}; ${method==='raw'?'raw':'shared component removed'}: ${r.normalized_recovery.toFixed(3)}</title></circle>`);
     }
-    $('#recovery-chart').innerHTML=svg(w,h,out,`Measured normalized network recovery at signal-to-noise ratio ${snr}, before and after removing the largest shared component.`);
+    $('#recovery-chart').innerHTML=svg(w,h,out,`Simulated normalized network recovery at signal-to-noise ratio ${snr}, before and after removing the largest shared component.`);
     const target=data.rhos.includes(.7)?.7:data.rhos.at(-2), a=data.rows.find(r=>r.method==='raw'&&r.snr===snr&&r.rho===target), b=data.rows.find(r=>r.method==='deflate1'&&r.snr===snr&&r.rho===target);
     $('#network-verdict').textContent=`At shared weight ${target}: raw ${fmt(a.normalized_recovery)} → component removed ${fmt(b.normalized_recovery)}.`;
   }

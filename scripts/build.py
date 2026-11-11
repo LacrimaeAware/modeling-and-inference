@@ -60,7 +60,7 @@ for path in SITE.glob('*.html'):
 for path in (SITE/'studies').glob('*.html'):
     content=path.read_text(encoding='utf-8')
     (OUT/'studies'/path.name).write_text(wrap(content,titles[path.name],'../'),encoding='utf-8')
-for source,target,title in [('README.md','readme.html','GitHub README'),('PROVENANCE.md','provenance.html','Data provenance'),('DEVELOPMENT.md','development.html','Build the portfolio')]:
+for source,target,title in [('README.md','readme.html','GitHub README'),('PROVENANCE.md','provenance.html','Data sources'),('DEVELOPMENT.md','development.html','Build the portfolio')]:
     body=markdown.markdown((ROOT/source).read_text(encoding='utf-8-sig'),extensions=['tables','fenced_code'])
     body=body.replace('src="site/assets/','src="assets/')
     body=re.sub(r'href="https://lacrimaeaware.github.io/modeling-and-inference/([^"]*)"',lambda m:'href="'+(m[1] or 'index.html')+'"',body)
