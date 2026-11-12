@@ -49,7 +49,7 @@ def wrap(content,title,base):
 <body data-base="{base}"><a class="skip" href="#main">Skip to content</a>
 <header class="mast"><div class="mast-inner wrap"><a class="brand" href="{base}index.html"><span class="brand-mark" aria-hidden="true">m</span>Modeling and Inference</a><nav aria-label="Main navigation"><a href="{base}index.html#rates">Experiments</a><a href="{base}methods.html">Methods & data</a></nav></div></header>
 {content}
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="{base}readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="{base}methods.html#ai-assistance">AI assistance</a><a href="{base}readme.html">GitHub README</a></div></div></footer>
 </body></html>'''
 
 for path in SITE.glob('*.html'):

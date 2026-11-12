@@ -14,4 +14,4 @@ Experiments with biological models, gene networks and image representations.
 
 [Methods, data and references](https://lacrimaeaware.github.io/modeling-and-inference/methods.html) · [Data sources](PROVENANCE.md) · [Build locally](DEVELOPMENT.md)
 
-LacrimaeAware
+LacrimaeAware · [AI assistance](https://lacrimaeaware.github.io/modeling-and-inference/methods.html#ai-assistance).
