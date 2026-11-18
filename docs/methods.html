@@ -94,6 +94,10 @@
 <p>The variance-ratio rule gave the selected directions a mean weight of 1.14 with independent blur and 1.16 with correlated blur. Here, training classes differed in how often they were blurred, so a difference between class means could reflect blur as well as digit identity.</p>
 <div class="reading-links"><a href="data/digit-variance-rules.csv">Weights and accuracies by split</a></div></div>
 
+<div class="method-block" id="digit-edits"><h3>Transfer of stroke thickness and slant</h3>
+<p>Twelve MNIST images supplied four examples each of 3, 5 and 8. Each image was rendered at 14 evenly spaced settings for each edit. Nine whole images supplied 117 adjacent edit steps for fitting. The three held-out images supplied 39 test steps. The first 40 principal coordinates were fitted on the training images.</p>
+<p>For each edit, the single-vector predictor uses the average training displacement at every step. The alternative uses kernel ridge regression to predict the displacement from the starting coordinates. Each score divides mean squared displacement error by the corresponding error from predicting no change. The table covers pixel coordinates, ResNet-18, CLIP ViT-B/32 and DINOv2 ViT-S/14 on the same split. <a href="data/digit-edit-transfer.csv">Errors by representation and edit</a>.</p></div>
+
 <div class="method-block" id="shape-transfer"><p class="method-label">Transfer across shape classes</p><h3>Does the same edit move different shapes in the same direction?</h3>
 <p>In a separate 32 × 32 generator, each image is paired with a version that changes one specified factor. For each of four shapes, the mean pixel change on the other three is compared with the mean change on the held-out shape. A cosine of 1 means the two average changes point in the same direction. Individual images can differ from this average.</p>
 <p>In one rendering run, alignment ranged from 0.836 to 0.941 across the four held-out shapes for thicker strokes, and from 0.690 to 0.918 for red-to-blue recoloring. Rotating a triangle by 45° gave 0.026, and rotating a cross gave −0.092.</p>

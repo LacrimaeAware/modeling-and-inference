@@ -17,6 +17,7 @@ The figures use recorded simulation results, benchmark scores and saved image ou
 | color-alignment-runs.csv | Color and thickness alignment in 20 runs per seed schedule. A stride of 192 gives disjoint rendering-seed ranges. A stride of 1 gives overlapping ranges. Both schedules include seed zero. |
 | shape-pair-alignment.csv | Held-out color and stroke-width alignment across 20 paired comparisons. Each fit to 160 pairs uses the same images equally often on each side, with the same color and width transitions. Includes ungrouped fits, convergence flags and both iteration limits. |
 | digit-variance-rules.csv | Classification accuracy and fitted weights from ten train/test splits per blur condition. The variance-weighting experiment compares distances to class means and regularized discriminant analysis on images of 3, 5 and 8. |
+| digit-edit-transfer.csv | Squared displacement errors for thickness and slant on three held-out MNIST images in one split, relative to predicting zero displacement. A common vector and a kernel ridge predictor are evaluated on the same 39 steps per edit. |
 | shape-transfer-alignment.csv | Raw-pixel alignment for five image changes, each transferred from three synthetic shapes to a fourth. |
 | classification.json | Ten image splits with independent and class-correlated blur. Image identities are separated before transformations. |
 | geometry-examples.npz | Seed 0 arrays for held-out images of digits 3, 5 and 8, moved along training covariance directions. All three digit classes are present in fitting. |

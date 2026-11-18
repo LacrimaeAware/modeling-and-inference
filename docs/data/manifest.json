@@ -62,6 +62,10 @@
       "sha256": "6677ba64a0a6e1e9abb6eda50d72a3acf5edb05c004cf3c5f40ea3db2e97031c"
     },
     {
+      "file": "digit-edit-transfer.csv",
+      "sha256": "c22a97e4fb53d9292aa08182fe1fefcd7230b04b1648ca644b37c9ed7a75733d"
+    },
+    {
       "file": "digit-variance-rules.csv",
       "sha256": "e76aec1cccb1ed7e2a73297f283e30aae70687eabd441bf6c82c61578088120a"
     },

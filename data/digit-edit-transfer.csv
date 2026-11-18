@@ -1,0 +1,9 @@
+seed,representation,edit,training_images,test_images,steps_per_image,common_vector_relative_mse,kernel_ridge_relative_mse
+0,pixels,thickness,9,3,13,0.3115,0.262
+0,ResNet-18,thickness,9,3,13,0.9928,0.6084
+0,CLIP ViT-B/32,thickness,9,3,13,0.9918,0.6376
+0,DINOv2 ViT-S/14,thickness,9,3,13,0.9852,0.4993
+0,pixels,slant,9,3,13,0.879,0.4416
+0,ResNet-18,slant,9,3,13,1.0051,1.0364
+0,CLIP ViT-B/32,slant,9,3,13,0.9953,1.0204
+0,DINOv2 ViT-S/14,slant,9,3,13,1.0215,1.1074

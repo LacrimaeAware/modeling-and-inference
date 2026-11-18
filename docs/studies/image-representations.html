@@ -34,6 +34,9 @@
     <p>Could the training data tell the classifier how much of that variation to keep? In a separate test with stronger blur, a rule comparing variation within digit classes with the separation of their means gave <strong>54.3%</strong> accuracy under class-correlated training blur. Leaving the directions unchanged gave 55.2%. Regularized linear discriminant analysis reached 75.2%.</p>
     <figure><a href="../assets/within-class-geometry.svg" title="Open full-size figure"><img src="../assets/within-class-geometry.svg" alt="Held-out images of a 3, a 5 and an 8, each moved along the same direction of variation." width="1050" height="960"></a><figcaption>The first direction of variation, fitted across the three training classes. Each row shows a held-out image shifted by −1.5, 0 and +1.5 training standard deviations along that direction. Pixels are clipped for display.</figcaption></figure>
     <p class="copy-note"><a href="../methods.html#classification">Classifier accuracy and the two blur protocols →</a></p>
+    <h3>Does a thicker stroke move every digit in the same direction?</h3>
+    <p>A separate test measured the change in an image encoder’s coordinates as a handwritten digit was thickened or slanted. A single average change fitted on nine MNIST images predicted the change on three held-out images about as well as predicting zero change. Across the two edits and three pretrained encoders, the squared prediction error was 0.985 to 1.022 times the error of predicting zero.</p>
+    <p>For thickness, a predictor that could vary its answer with the starting image reduced that ratio to 0.499–0.716 on the same three images. The failure was specific to using one common change for every digit in this small test. <a href="../methods.html#digit-edits">Edit sizes, encoders and errors</a>.</p>
   </section>
 
   <section class="research-chapter" id="encoder">
