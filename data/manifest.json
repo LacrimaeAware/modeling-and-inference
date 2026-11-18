@@ -1,5 +1,5 @@
 {
-  "evidence_date": "2026-11-17",
+  "evidence_date": "2026-11-18",
   "files": [
     {
       "file": "benchmark-boolode.csv",
@@ -15,7 +15,7 @@
     },
     {
       "file": "benchmark-time-direction.csv",
-      "sha256": "9317bb911b2515ad2ae4037a639cdbb5182861f865903874e81d344259c9694f"
+      "sha256": "ab54d12b407603966274ba73b8dbbe71b98451b7813615820fd1b075a549a8a2"
     },
     {
       "file": "brightness-seed-0.json",
@@ -62,6 +62,10 @@
       "sha256": "6677ba64a0a6e1e9abb6eda50d72a3acf5edb05c004cf3c5f40ea3db2e97031c"
     },
     {
+      "file": "digit-variance-rules.csv",
+      "sha256": "e76aec1cccb1ed7e2a73297f283e30aae70687eabd441bf6c82c61578088120a"
+    },
+    {
       "file": "geometry-examples.npz",
       "sha256": "16993e4aec9eddb86287aec448ae3bf1d7ffcb14835310842a9cb359f1e46cab"
     },
@@ -92,6 +96,14 @@
     {
       "file": "shape-actions.json",
       "sha256": "1cfb0765262f22cec59551f1803e2d75ef445e6bfe305f6d22f304f3b97e8721"
+    },
+    {
+      "file": "shape-pair-alignment.csv",
+      "sha256": "2bc737a199efa88f51a791ed6a112623664ec139209662cf482c8a448e94b2d6"
+    },
+    {
+      "file": "shape-transfer-alignment.csv",
+      "sha256": "118078b172000b1250acb7530b0f4f078b3476c6acc6e1364d54072862e3dc08"
     }
   ]
 }

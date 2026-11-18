@@ -239,7 +239,35 @@ def transfer_data():
     fig.tight_layout();save(fig,'brightness-transfer')
     return result
 
+def plot_shape_pair_alignment():
+    rows = [row for row in read_csv('shape-pair-alignment.csv') if int(row['ica_max_iter']) == 1000]
+    paired = {}
+    for row in rows:
+        key = (int(row['train_seed']), int(row['test_seed']))
+        fitted = paired.setdefault(key, {})
+        assert row['method'] not in fitted
+        fitted[row['method']] = row
+    assert len(paired) == 20
+    fig, ax = plt.subplots(figsize=(7.4, 3.1))
+    for y, (metric, color) in enumerate([('width_held_out', RUST), ('color_held_out', GREEN)]):
+        differences = []
+        for key in sorted(paired):
+            methods = paired[key]
+            differences.append(float(methods['same_shape_pairs'][metric]) -
+                               float(methods['different_shape_pairs'][metric]))
+        offsets = np.linspace(-.17, .17, len(differences))
+        ax.scatter(differences, y + offsets, color=color, s=28, alpha=.82, zorder=2)
+        ax.scatter(np.mean(differences), y, facecolor=PAPER, edgecolor=INK, marker='D', s=60, zorder=3)
+    ax.axvline(0, color=INK, lw=1.1)
+    ax.set(yticks=[0, 1], yticklabels=['Stroke width', 'Color'], ylim=(-.5, 1.5),
+           xlabel='Held-out alignment: same-shape pairs minus different-shape pairs')
+    ax.grid(axis='x', alpha=.2)
+    ax.set_axisbelow(True)
+    fig.tight_layout()
+    save(fig, 'shape-pair-alignment')
+
 def geometry_figures():
+    plot_shape_pair_alignment()
     batches = [r for r in read_csv('color-alignment-runs.csv') if int(r['seed_stride']) == 192]
     assert len({r['seed'] for r in batches}) == len(batches) == 20
     differences = sorted(float(r['within_shape_color']) - float(r['raw_image_color']) for r in batches)

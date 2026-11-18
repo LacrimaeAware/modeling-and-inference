@@ -8,24 +8,36 @@
 <main class="note study-page" id="main">
   <a class="back" href="../index.html#representations">← Back to the studies</a>
   <p class="eyebrow">03 · Geometry &amp; structured transforms</p>
-  <h1>How do image models handle blur, brightness and color?</h1>
+  <h1>What can we learn by comparing images within and across classes?</h1>
+  <p>Two triangles can differ in color and stroke width. Does comparing two triangles make either change easier to find than comparing a triangle with a square? With handwritten digits, the question is whether accounting for variation among examples of each digit improves classification.</p>
+  <p>On fresh images, directions learned from same-shape pairs tended to match changes in color and stroke width more closely. On handwritten digits, using the variation within and between classes to weight the selected directions failed to improve average accuracy in either blur condition.</p>
   <nav class="chapter-nav" aria-label="Sections in this study">
-    <a href="#within-class"><span>01</span><strong>Digit classification</strong><small>When blur predicts the label</small></a>
-    <a href="#encoder"><span>02</span><strong>Brightness prediction</strong><small>A rule fitted at one multiplier</small></a>
-    <a href="#color-discovery"><span>03</span><strong>Color alignment</strong><small>Comparing shapes in pairs</small></a>
+    <a href="#color-discovery"><span>01</span><strong>Comparing shapes</strong><small>Finding color and stroke width</small></a>
+    <a href="#within-class"><span>02</span><strong>Classifying digits</strong><small>When blur predicts the label</small></a>
+    <a href="#encoder"><span>03</span><strong>Predicting brightness</strong><small>A rule fitted at one multiplier</small></a>
   </nav>
 
+  <section class="research-chapter" id="color-discovery">
+    <header class="chapter-heading"><span class="chapter-number">01</span><div><p class="eyebrow">Synthetic shapes · 20 batches</p><h2>Does pairing images by shape help recover color or stroke width?</h2></div></header>
+    <p>Each batch contains the same four shapes in four colors and three stroke widths. One model compared pairs of the same shape. The other compared different shapes using the same images and the same color and width changes. Each model fitted six directions to the pixel differences.</p>
+    <p>On fresh images, the same-shape model aligned more closely with the red versus non-red color difference in <strong>13 of 20 batches</strong>. Average alignment was <strong>0.795 versus 0.742</strong>, on a scale from 0 to 1. For thick versus thin strokes, it scored higher in <strong>14 of 20 batches</strong>, averaging <strong>0.687 versus 0.629</strong>.</p>
+    <figure><a href="../assets/shape-pair-alignment.svg" title="Open full-size figure"><img src="../assets/shape-pair-alignment.svg" alt="Same-shape pairing scored higher for color in 13 of 20 batches and for stroke width in 14 of 20." width="1200" height="500"></a><figcaption>Each dot compares the two pairing methods on one held-out batch. Diamonds mark the means. Positive values favor same-shape pairing.</figcaption></figure>
+    <p>Five different-shape fits reached the iteration limit. With ten times as many iterations, the mean advantage of same-shape pairing narrowed from 0.053 to 0.036 for color and stayed near 0.058 for width.</p>
+    <p class="copy-note" id="cross-class"><a href="../methods.html#color-discovery">Pairing, scoring and ungrouped-image comparison</a> · <a href="../methods.html#shape-transfer">Which changes carried over to a held-out shape?</a></p>
+  </section>
+
   <section class="research-chapter" id="within-class">
-    <header class="chapter-heading"><span class="chapter-number">01</span><div><p class="eyebrow">Handwritten digits · ten image splits</p><h2>What happens when blur stops predicting the digit?</h2></div></header>
+    <header class="chapter-heading"><span class="chapter-number">02</span><div><p class="eyebrow">Handwritten digits · ten image splits</p><h2>Does ignoring variation within each digit improve classification?</h2></div></header>
     <p>In one training condition, 3s were blurred more often than 5s or 8s. In the other, blur was independent of the digit. Both conditions used held-out test images with blur applied independently of the label.</p>
     <p>A nearest-mean classifier assigns each image to the closest average digit. Removing eight directions of variation estimated within digit classes raised its mean test accuracy from <strong>74.0% to 82.3%</strong> when training blur was tied to the label. With independent training blur, the same change lowered accuracy from <strong>93.2% to 87.4%</strong>.</p>
     <p>On the correlated-blur task, logistic regression reached <strong>93.2%</strong>. Training it on both sharp and blurred versions of each training image raised accuracy to <strong>97.3%</strong>.</p>
+    <p>Could the training data tell the classifier how much of that variation to keep? In a separate test with stronger blur, a rule comparing variation within digit classes with the separation of their means gave <strong>54.3%</strong> accuracy under class-correlated training blur. Leaving the directions unchanged gave 55.2%. Regularized linear discriminant analysis reached 75.2%.</p>
     <figure><a href="../assets/within-class-geometry.svg" title="Open full-size figure"><img src="../assets/within-class-geometry.svg" alt="Held-out images of a 3, a 5 and an 8, each moved along the same direction of variation." width="1050" height="960"></a><figcaption>The first direction of variation, fitted across the three training classes. Each row shows a held-out image shifted by −1.5, 0 and +1.5 training standard deviations along that direction. Pixels are clipped for display.</figcaption></figure>
-    <p class="copy-note"><a href="../methods.html#classification">All seven classifiers and the train/test splits →</a></p>
+    <p class="copy-note"><a href="../methods.html#classification">Classifier accuracy and the two blur protocols →</a></p>
   </section>
 
   <section class="research-chapter" id="encoder">
-    <header class="chapter-heading"><span class="chapter-number">02</span><div><p class="eyebrow">Autoencoder · synthetic shapes</p><h2>How does a trained model represent brightness?</h2></div></header>
+    <header class="chapter-heading"><span class="chapter-number">03</span><div><p class="eyebrow">Autoencoder · synthetic shapes</p><h2>How does a trained model represent brightness?</h2></div></header>
     <p>An autoencoder compresses an image into 32 numbers. Across six brightness multipliers, a scaling rule fitted at 1.5× predicted how those coordinates changed more accurately than adding a common offset.</p>
     <h3>Request a 1.5× brighter image.</h3>
     <p>The target multiplies every RGB intensity by 1.5. Compare the model’s ordinary reconstruction with its reconstruction after the brightness edit. Compression itself can blur the image.</p>
@@ -48,17 +60,9 @@
     <p>For the decoded images, a simpler comparison is to brighten the ordinary reconstruction pixel by pixel. The learned edit had 1% lower squared pixel error on average within the training brightness range and 17% higher error outside it.</p>
   </section>
 
-  <section class="research-chapter" id="color-discovery">
-    <header class="chapter-heading"><span class="chapter-number">03</span><div><p class="eyebrow">Synthetic shapes · 20 image batches</p><h2>Does grouping images by shape help isolate color?</h2></div></header>
-    <p>Each batch contains triangles, squares, pentagons and hexagons in several colors and stroke widths. One fit uses differences between images of the same shape. The other uses the original images. Both use independent component analysis (ICA) to find six patterns of variation.</p>
-    <p>After fitting, each pattern is compared with the difference between the average red image and the average non-red image in that batch. The closest match averaged <strong>0.810</strong> for same-shape differences and <strong>0.794</strong> for the original images. Grouping by shape scored higher in <strong>13 of the 20 batches</strong>.</p>
-    <figure><a href="../assets/color-discovery.svg" title="Open full-size figure"><img src="../assets/color-discovery.svg" alt="Grouping by shape gave a closer color match in 13 batches. Fitting ICA to the original images gave a closer match in seven." width="1200" height="470"></a><figcaption>Each dot is one batch. Values above zero favor grouping by shape. A difference of 0.1 is one tenth of the 0–1 alignment scale.</figcaption></figure>
-    <p class="copy-note" id="cross-class"><a href="../methods.html#color-discovery">Alignment scores and sampling procedure</a> · <a href="../methods.html#color-control">A separate test of a prescribed color rotation</a></p>
-  </section>
-
-  <div class="reading-links"><a href="../data/classification.json">Digit predictions</a><a href="../data/brightness-transfer.csv">Encoder-transfer measurements</a><a href="../data/color-alignment-runs.csv">Color alignment by run</a></div>
+  <div class="reading-links"><a href="../data/shape-pair-alignment.csv">Shape-pair results</a><a href="../data/classification.json">Digit predictions</a><a href="../data/brightness-transfer.csv">Brightness measurements</a></div>
   <div class="note-nav"><a href="gene-networks.html">← Gene-network recovery</a><a href="../methods.html#representations">Methods &amp; data →</a></div>
 </main>
 
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="../methods.html#ai-assistance">AI assistance</a><a href="../readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><strong>LacrimaeAware</strong><div class="footer-right"><a href="https://github.com/LacrimaeAware/modeling-and-inference">GitHub repository</a></div></div></footer>
 </body></html>

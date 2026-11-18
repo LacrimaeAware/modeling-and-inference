@@ -17,15 +17,15 @@
 <tbody>
 <tr>
 <td>input-design.json</td>
-<td>Mechanistic model inference, experiment 10: selection counts and fitted trajectories for nominal and basal-preserving inputs.</td>
+<td>Model-selection counts and fitted protein trajectories under constant and pulsed inputs. A second comparison keeps basal transcription active during each pulse cycle.</td>
 </tr>
 <tr>
 <td>network-grid.csv</td>
-<td>GRN experiment 28: nine shared-component weights, eight signal/noise levels, four methods, five seeds per cell, 100 genes.</td>
+<td>Simulations of 100-gene networks at nine shared-component weights and eight signal-to-noise levels, with four methods and five seeds per setting.</td>
 </tr>
 <tr>
 <td>benchmark-dream4.csv, benchmark-boolode.csv</td>
-<td>GRN experiment 33: per-dataset average precision on common directed non-self reference edges.</td>
+<td>Average precision for each method and dataset, scored against directed connections between distinct genes in the generating network.</td>
 </tr>
 <tr>
 <td>benchmark-operator-scaling.csv</td>
@@ -33,15 +33,15 @@
 </tr>
 <tr>
 <td>benchmark-time-direction.csv</td>
-<td>Standardized linear fits in both observation orders, scored against the same directed edges. Each row gives average precision and counts for gene pairs with a known connection in only one direction.</td>
+<td>Standardized linear fits in both observation orders, scored against the same directed edges. Each row gives average precision, its value after assigning both directions of a gene pair their mean forward score, and orientation counts for connections with only one known direction.</td>
 </tr>
 <tr>
 <td>response-scaling.csv, response-consistency.json</td>
-<td>GRN experiment 42: modular-response controls and aggregate RPE1 split-half consistency.</td>
+<td>Modular-response calculations on simulated networks and the agreement between two rankings obtained by splitting the measured RPE1 data.</td>
 </tr>
 <tr>
 <td>response-confound.csv</td>
-<td>GRN experiment 41: response-strength control summary.</td>
+<td>Simulated perturbation responses with varying intervention strengths.</td>
 </tr>
 <tr>
 <td>brightness-seed-*.json and .npz</td>
@@ -53,11 +53,23 @@
 </tr>
 <tr>
 <td>color-discovery.csv</td>
-<td>Within-class discovery experiment 15: color and thickness alignment scores from one synthetic-data run, with 40 requested pairs per shape, PCA 20 and ICA 6. Shape labels enter discovery; color labels enter the alignment score.</td>
+<td>Color and thickness alignment in one batch of synthetic shapes. The fit used 40 requested pairs per shape, 20 principal components and six independent components. Shape labels determined the pairs. Color labels were used to score alignment.</td>
 </tr>
 <tr>
 <td>color-alignment-runs.csv</td>
 <td>Color and thickness alignment in 20 runs per seed schedule. A stride of 192 gives disjoint rendering-seed ranges. A stride of 1 gives overlapping ranges. Both schedules include seed zero.</td>
+</tr>
+<tr>
+<td>shape-pair-alignment.csv</td>
+<td>Held-out color and stroke-width alignment across 20 paired comparisons. Each fit to 160 pairs uses the same images equally often on each side, with the same color and width transitions. Includes ungrouped fits, convergence flags and both iteration limits.</td>
+</tr>
+<tr>
+<td>digit-variance-rules.csv</td>
+<td>Classification accuracy and fitted weights from ten train/test splits per blur condition. The variance-weighting experiment compares distances to class means and regularized discriminant analysis on images of 3, 5 and 8.</td>
+</tr>
+<tr>
+<td>shape-transfer-alignment.csv</td>
+<td>Raw-pixel alignment for five image changes, each transferred from three synthetic shapes to a fourth.</td>
 </tr>
 <tr>
 <td>classification.json</td>
@@ -78,5 +90,5 @@
 </tbody>
 </table></div>
 <p><a href="data/manifest.json">File checksums</a> · <a href="development.html">Build instructions</a></p></main>
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="./methods.html#ai-assistance">AI assistance</a><a href="./readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><strong>LacrimaeAware</strong><div class="footer-right"><a href="https://github.com/LacrimaeAware/modeling-and-inference">GitHub repository</a></div></div></footer>
 </body></html>

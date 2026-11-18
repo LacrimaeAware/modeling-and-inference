@@ -11,11 +11,11 @@ const path = (points) => points.map((p,i)=>`${i?'L':'M'}${p[0].toFixed(2)},${p[1
 
 function rates(data) {
   if (!$('#rate-charts')) return;
-  let observed = false, animation = null;
   const range = $('#rate-scale'), button = $('#play-rates');
+  let animation = null;
   function draw(announce = true) {
     const c = 2 ** Number(range.value);
-    $('#scale-value').textContent = `${fmt(c)}× / ${fmt(1/c)}×`;
+    $('#scale-value').textContent = `${fmt(c)}×`;
     $('#km-value').textContent = `${fmt(data.rates.km*c)} / min`;
     $('#kp-value').textContent = `${fmt(data.rates.kp/c)} / min`;
     range.setAttribute('aria-valuetext', `${fmt(c)} times the transcription rate and ${fmt(1/c)} times the translation rate`);
@@ -26,29 +26,41 @@ function rates(data) {
       const x0 = stacked ? 0 : col*(pw+24), y0 = stacked ? col*(ph+24) : 0;
       const x = t => x0+34+t/160*(pw-49), ymax = col ? 4.4 : 1.1;
       const y = a => y0+ph-33-a/ymax*(ph-70);
-      out += text(x0+34,y0+16,col?'mRNA · intermediate':'Protein · output','plot-title');
+      out += text(x0+34,y0+16,col?'mRNA concentration':'Protein concentration','plot-title');
       const ticks = col ? [0,2,4] : [0,.5,1];
       for (const t of ticks) out += line(x0+34,y(t),x0+pw-15,y(t)) + text(x0+27,y(t)+4,String(t),'chart-label','end');
       for (const t of [0,80,160]) out += text(x(t),y0+ph-17,String(t),'chart-label','middle');
       out += text(x0+pw/2,y0+ph,'Time (minutes)','chart-label','middle');
       const values = col?data.mrna:data.protein, max = Math.max(...values);
-      if (!col || observed) {
-        out += `<path class="plot-reference" d="${path(values.map((v,i)=>[x(data.t[i]),y(v/max)]))}"/>`;
-        out += `<path class="plot-alternative" d="${path(values.map((v,i)=>[x(data.t[i]),y(v/max*(col?c:1))]))}"/>`;
-      } else {
-        out += `<rect x="${x0+33}" y="${y0+30}" width="${pw-47}" height="${ph-63}" fill="#edf0e9" fill-opacity=".96"/>`;
-        out += text(x0+(pw+18)/2,y0+81,'Not measured','plot-title','middle');
-        out += text(x0+(pw+18)/2,y0+100,'Add the second channel','chart-label','middle');
-      }
+      out += `<path class="plot-reference" d="${path(values.map((v,i)=>[x(data.t[i]),y(v/max)]))}"/>`;
+      out += `<path class="plot-alternative" d="${path(values.map((v,i)=>[x(data.t[i]),y(v/max*(col?c:1))]))}"/>`;
     });
-    $('#rate-charts').innerHTML = svg(w,h,out,'Protein stays the same as the two production rates trade off. The mRNA trace changes in proportion to transcription. Vertical axes are relative to each reference peak.');
-    if (announce) $('#rate-verdict').textContent = observed ? (Math.abs(c-1)<.01 ? 'These are the reference rates. Move the slider to compare another setting.' : `The protein traces still coincide. The mRNA trace is ${fmt(c)}× the reference.`) : 'Protein alone cannot distinguish these rate settings.';
+    const comparison = c === 1
+      ? 'At the reference rates, both curves coincide in each plot.'
+      : `The protein curves coincide. The changed rates give ${fmt(c)}× the reference mRNA concentration.`;
+    $('#rate-charts').innerHTML = svg(w,h,out,`Simulated concentrations relative to each reference peak. ${comparison}`);
+    if (announce) $('#rate-verdict').textContent = comparison;
   }
-  function stop(){if(animation)cancelAnimationFrame(animation);animation=null;button.textContent='▶ Animate';button.setAttribute('aria-pressed','false');draw();}
-  function frame(time){range.value=String(1.65*Math.sin(time/2300));draw(false);animation=requestAnimationFrame(frame);}
-  button.addEventListener('click',()=>{if(animation){stop();return;}button.textContent='Ⅱ Pause';button.setAttribute('aria-pressed','true');animation=requestAnimationFrame(frame);});
-  range.addEventListener('input',()=>{stop();draw();});
-  $$('[data-channel]').forEach(b=>b.addEventListener('click',()=>{observed=b.dataset.channel==='both';$$('[data-channel]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));draw();}));
+  function stop() {
+    if (animation !== null) cancelAnimationFrame(animation);
+    animation = null;
+    button.textContent = '▶ Animate';
+    button.setAttribute('aria-pressed','false');
+    draw();
+  }
+  function frame(time) {
+    range.value = String(1.65*Math.sin(time/2300));
+    draw(false);
+    animation = requestAnimationFrame(frame);
+  }
+  button.addEventListener('click',()=>{
+    if (animation !== null) { stop(); return; }
+    button.textContent = 'Ⅱ Pause';
+    button.setAttribute('aria-pressed','true');
+    $('#rate-verdict').textContent = 'As the rates change, the protein curves coincide and the mRNA concentration follows the transcription rate.';
+    animation = requestAnimationFrame(frame);
+  });
+  range.addEventListener('input',stop);
   document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
   reduceMotion.addEventListener('change',()=>{if(reduceMotion.matches)stop();});
   new ResizeObserver(()=>draw(false)).observe($('#rate-charts'));

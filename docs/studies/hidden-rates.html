@@ -20,26 +20,25 @@
   <p>A screen compared five equal-input schedules across both mechanisms and three feedback strengths. Three pulses gave the largest worst-case separation within that menu. Repeated trials with added noise then tested how often the correct model was selected. This applies the established idea of <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2873315/">designing experiments to discriminate between biochemical models</a> to this model family.</p>
   <p>An additional pulse comparison keeps basal transcription active. At the higher of two feedback strengths, three pulses yielded just three additional correct selections in 50 trials for each mechanism (47 to 50 and 41 to 44). <a href="../methods.html#rates">Full counts and settings</a>.</p>
   <h2>Identifying mechanisms and estimating rates</h2>
-  <p>Identifying the mechanism leaves a separate ambiguity in its production rates. Multiplying the mRNA production rate by a factor and dividing the translation rate by the same factor leaves the protein trace unchanged for every input schedule in these models. Measuring mRNA supplies information about the separate rates.</p>
+  <p>Even if the feedback mechanism is known, two different sets of production rates can give exactly the same protein curve. The example below simulates gene expression without feedback. Move the slider to multiply the transcription rate and divide the translation rate by the same factor.</p>
     <div class="experiment rate-experiment">
-      <div class="experiment-heading"><span class="live-dot"></span><strong>Change the rates. Compare the observations.</strong><span class="small-label">Simulated model</span></div>
+      <div class="experiment-heading"><strong>Predicted protein and mRNA concentrations</strong></div>
       <div class="rate-flow" aria-label="Gene expression has two production steps">
         <div class="molecule">Gene<small>instructions</small></div><div class="flow-arrow"><span>transcription</span><b>→</b><output id="km-value">2.08 / min</output></div><div class="molecule">mRNA<small>intermediate</small></div><div class="flow-arrow"><span>translation</span><b>→</b><output id="kp-value">3.85 / min</output></div><div class="molecule">Protein<small>output</small></div>
       </div>
       <div class="rate-tools">
-        <label for="rate-scale">Rate trade-off <output id="scale-value">2× / ½×</output><input id="rate-scale" type="range" min="-2" max="2" step="0.02" value="1" aria-describedby="rate-help"></label>
+        <label for="rate-scale">Transcription rate relative to reference <output id="scale-value">2.00×</output><input id="rate-scale" type="range" min="-2" max="2" step="0.02" value="1" aria-describedby="rate-help"></label>
         <button id="play-rates" class="subtle-button" aria-pressed="false">▶ Animate</button>
       </div>
-      <div class="segmented" role="group" aria-label="Observed molecules"><button data-channel="protein" aria-pressed="true">Protein only</button><button data-channel="both" aria-pressed="false">Add mRNA measurement</button></div>
       <div id="rate-charts" class="rate-charts"><img class="fallback" src="../assets/rate-ambiguity.svg" alt="The protein traces coincide for two rate settings; their mRNA traces differ." width="1000" height="350"></div>
       <div class="legend"><span><i class="reference"></i>Reference rates</span><span><i class="alternative"></i>Changed rates</span></div>
-      <p class="experiment-verdict" id="rate-verdict" aria-live="polite">Protein alone cannot distinguish these rate settings.</p>
-      <p class="fineprint" id="rate-help">Traces relative to each reference peak. M1 model · Fixed decay rates · Zero initial concentrations.</p>
+      <p class="experiment-verdict" id="rate-verdict" aria-live="polite">The protein curves coincide. Doubling transcription and halving translation doubles the mRNA concentration.</p>
+      <p class="fineprint" id="rate-help">Each vertical axis uses that molecule’s peak concentration at the reference rates as one unit. Both simulations start at zero and use the same decay rates.</p>
     </div>
-  <p>The interactive example uses the simple unregulated cascade. The argument also applies to the two feedback models. An mRNA measurement can help separate rates that protein measurements alone cannot distinguish; the precision depends on when and how accurately it is measured.</p>
+  <p>The same trade-off holds under any prescribed transcription input in both feedback models. A measurement of mRNA during the response could distinguish rate settings that protein alone cannot separate.</p>
   <div class="reading-links"><a href="../data/input-design.json">Counts and plotted trajectories · JSON</a><a href="../methods.html#rates">Equations, assumptions &amp; complete counts</a></div>
   <div class="note-nav"><a href="../index.html#rates">← Overview</a><a href="gene-networks.html">Gene-network recovery →</a></div>
 </main>
 
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="../methods.html#ai-assistance">AI assistance</a><a href="../readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><strong>LacrimaeAware</strong><div class="footer-right"><a href="https://github.com/LacrimaeAware/modeling-and-inference">GitHub repository</a></div></div></footer>
 </body></html>

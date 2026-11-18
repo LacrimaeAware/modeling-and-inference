@@ -13,23 +13,23 @@
     </div>
     <nav class="contents" aria-label="Studies">
       <a href="#rates"><span>01</span><div><strong>Biological mechanisms</strong><small>Designing an input that separates two models.</small></div><b aria-hidden="true">↗</b></a>
-      <a href="#networks"><span>02</span><div><strong>Gene networks</strong><small>Testing how preprocessing changes edge rankings.</small></div><b aria-hidden="true">↗</b></a>
-      <a href="#representations"><span>03</span><div><strong>Image variation</strong><small>Testing a classifier when blur stops predicting the label.</small></div><b aria-hidden="true">↗</b></a>
+      <a href="#networks"><span>02</span><div><strong>Gene networks</strong><small>Finding a connection and identifying its direction.</small></div><b aria-hidden="true">↗</b></a>
+      <a href="#representations"><span>03</span><div><strong>Image variation</strong><small>Comparing differences within and across classes.</small></div><b aria-hidden="true">↗</b></a>
     </nav>
   </section>
 
   <section class="study wrap" id="rates">
     <div class="study-copy">
-      <h2>Do pulses help separate<br> the models?</h2>
-      <p>A cell can regulate protein production at two different steps. Its protein trace can look similar either way. Which experiment makes those explanations easier to tell apart?</p>
+      <h2>Can pulses distinguish two feedback mechanisms?</h2>
+      <p>A cell can slow the production of mRNA or slow its translation into protein. Either mechanism can produce a similar protein level under constant input. Three pulses expose differences in how the protein level rises and falls.</p>
       <p class="context-line">Based on the gene-expression models in <a href="https://doi.org/10.1039/D2MO00222A">Ryzowicz &amp; Yildirim (2023)</a>.</p>
-      <a class="text-link" href="studies/hidden-rates.html">Input experiment and rate comparison <span>↗</span></a>
+      <a class="text-link" href="studies/hidden-rates.html">How often each input identifies the mechanism <span>↗</span></a>
     </div>
     <div class="experiment pulse-experiment">
-      <div class="experiment-heading"><strong>Compare the same two models</strong><span class="small-label">Simulated protein measurements</span></div>
+      <div class="experiment-heading"><strong>Protein response to constant and pulsed input</strong><span class="small-label">Simulation</span></div>
       <div class="protocol-tools"><label for="true-mechanism">Where feedback acts<select id="true-mechanism"><option value="M3">Protein production</option><option value="M2">mRNA production</option></select></label><div class="segmented" role="group" aria-label="Input schedule"><button data-protocol="constant" aria-pressed="false">Constant</button><button data-protocol="three_pulses" aria-pressed="true">Three pulses</button></div></div>
       <div class="chart" id="pulse-chart"><img src="assets/input-design.svg" alt="Equal-total-input simulations: three pulses increase correct model selection from 61–83 to 99–100 out of 100 trials." width="1200" height="560"></div>
-      <div class="legend"><span><i class="reference"></i>Generating model</span><span><i class="alternative"></i>Rival after refitting</span></div>
+      <div class="legend"><span><i class="reference"></i>Model that generated the data</span><span><i class="alternative"></i>Other model after fitting</span></div>
       <div class="selection-result"><div><span>Constant input</span><strong id="constant-count">61 <small>/ 100</small></strong></div><span aria-hidden="true">→</span><div><span>Three pulses</span><strong id="pulse-count">99 <small>/ 100</small></strong></div></div>
       <p class="experiment-verdict" id="pulse-verdict" aria-live="polite">Correct selections across 100 noisy trials per input schedule.</p>
       <p class="fineprint">The same total input, duration and noise level are used for both schedules.</p>
@@ -39,11 +39,10 @@
   <section class="network-band">
     <div class="study wrap" id="networks">
       <div class="study-copy">
-        <h2>Does preprocessing change which method ranks first?</h2>
-        <p>Each simulated dataset includes gene-expression measurements and the network that generated them. A linear model ranks possible connections by the size of its fitted coefficients.</p>
-        <p>In raw units, the model trailed the leading comparison method on both benchmarks. Centering and scaling each gene put it ahead on both, using the same observations and reference edges.</p>
-        <p>Reading the same observation pairs backward sharply reduced the standardized model’s score on DREAM4. On BoolODE, its score changed little.</p>
-        <a class="text-link" href="studies/gene-networks.html#benchmarks">Compare the rankings and the time-order test <span>↗</span></a>
+        <h2>Which gene influences which?</h2>
+        <p>On two simulated benchmarks, a linear model ranked known connections most accurately on average after each gene’s expression was centered and scaled.</p>
+        <p>For connections known to run in just one direction, the model gave that direction the higher score 86% of the time on DREAM4 and 53% on BoolODE, averaging over datasets. On BoolODE, even fitting the observations in reverse order left much of the overall ranking score intact.</p>
+        <a class="text-link" href="studies/gene-networks.html#time-order">What changes when time runs backward? <span>↗</span></a>
       </div>
       <div class="experiment network-experiment">
         <div class="experiment-heading"><strong>Ranking known connections</strong><span class="small-label">Simulated networks</span></div>
@@ -56,22 +55,24 @@
 
   <section class="study wrap" id="representations">
     <div class="study-copy">
-      <h2>When does removing variation help classify a digit?</h2>
-      <p>If training images of some digits are blurrier than others, blur can become a shortcut. What happens when the blur in the test images is independent of the digit label?</p>
-      <a class="text-link" href="studies/image-representations.html#within-class">Digit, color and brightness experiments <span>↗</span></a>
+      <h2>Can variation within a class tell us what to keep?</h2>
+      <p>A handwritten 3 can be sharp or blurry. If most 3s in the training set are blurry and most 5s and 8s are sharp, blur also looks like a difference between digits.</p>
+      <p>A rule that compared variation within and between the training classes gave extra weight to the selected directions. When blur stopped predicting the digit at test time, keeping that extra variation hurt accuracy.</p>
+      <a class="text-link" href="studies/image-representations.html">Comparisons across digits and shapes <span>↗</span></a>
     </div>
     <div class="experiment geometry-experiment">
-      <div class="experiment-heading"><strong>Accuracy on held-out digits</strong><span class="small-label">Ten image splits</span></div>
-      <table class="digit-results"><thead><tr><th scope="col">Classifier</th><th scope="col">Class-linked training blur</th><th scope="col">Independent training blur</th></tr></thead><tbody>
-        <tr><th scope="row">Nearest mean</th><td>74.0%</td><td>93.2%</td></tr>
-        <tr><th scope="row">Nearest mean after removing 8 directions</th><td>82.3%</td><td>87.4%</td></tr>
-        <tr><th scope="row">Logistic regression</th><td>93.2%</td><td>96.5%</td></tr>
+      <div class="experiment-heading"><strong>Accuracy on held-out 3s, 5s and 8s</strong><span class="small-label">Ten image splits</span></div>
+      <table class="digit-results"><thead><tr><th scope="col">Classification rule</th><th scope="col">Class-linked training blur</th><th scope="col">Independent training blur</th></tr></thead><tbody>
+        <tr><th scope="row">Leave directions unchanged</th><td>55.2%</td><td>87.4%</td></tr>
+        <tr><th scope="row">Weight by class variation</th><td>54.3%</td><td>86.8%</td></tr>
+        <tr><th scope="row">Remove selected directions</th><td>73.1%</td><td>82.8%</td></tr>
+        <tr><th scope="row">Regularized linear discriminant analysis</th><td>75.2%</td><td>93.3%</td></tr>
       </tbody></table>
-      <p class="fineprint">The eight directions capture variation among training images of the same digit. Removing them helped only when training blur depended on the label.</p>
+      <p class="fineprint">The first three rules classify an image by the nearest average digit after the indicated change. Blur is independent of the digit in both test conditions.</p>
     </div>
   </section>
 
 </main>
 
-<footer class="footer"><div class="footer-inner wrap"><div><strong>LacrimaeAware</strong><p>Modeling and inference experiments.</p></div><div class="footer-right"><a href="./methods.html#ai-assistance">AI assistance</a><a href="./readme.html">GitHub README</a></div></div></footer>
+<footer class="footer"><div class="footer-inner wrap"><strong>LacrimaeAware</strong><div class="footer-right"><a href="https://github.com/LacrimaeAware/modeling-and-inference">GitHub repository</a></div></div></footer>
 </body></html>

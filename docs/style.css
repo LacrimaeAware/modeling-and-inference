@@ -77,3 +77,8 @@
 .digit-results th:first-child{padding-left:clamp(12px,2vw,24px);text-align:left;width:43%}
 .digit-results th:last-child,.digit-results td:last-child{padding-right:clamp(12px,2vw,24px)}
 .digit-results th{font-weight:600}.digit-results tbody th{font-weight:400}
+@media(max-width:480px){.mast-inner{gap:8px}.mast nav{gap:10px;font-size:11px}.mast nav a:last-child{display:inline}}
+@media(max-width:480px){
+  .rate-experiment .rate-flow{display:grid;grid-template-columns:auto 1fr auto 1fr auto;gap:2px;padding-inline:12px}
+  .rate-experiment .flow-arrow output{white-space:nowrap}
+}
