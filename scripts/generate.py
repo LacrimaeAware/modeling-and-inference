@@ -27,7 +27,11 @@ def read_csv(name):
         return list(csv.DictReader(f))
 
 def save(fig, name):
-    fig.savefig(ASSETS / f'{name}.svg', bbox_inches='tight')
+    svg_path = ASSETS / f'{name}.svg'
+    with matplotlib.rc_context({'svg.hashsalt': name}):
+        fig.savefig(svg_path, bbox_inches='tight', metadata={'Date': None})
+    lines = svg_path.read_text(encoding='utf-8').splitlines()
+    svg_path.write_bytes(('\n'.join(line.rstrip() for line in lines) + '\n').encode('utf-8'))
     fig.savefig(ASSETS / f'{name}.png', dpi=150, bbox_inches='tight')
     plt.close(fig)
 
@@ -102,20 +106,28 @@ def network_data():
     save(fig, 'network-recovery')
     return {'rows': rows, 'rhos':rhos, 'snrs':snrs}
 
-METHODS={'lagged_genie3_rf':'Lagged random forest', 'lagged_lasso':'Lagged LASSO', 'lagged_correlation':'Lagged correlation', 'dmd_operator':'Dynamical operator', 'static_correlation':'Static correlation'}
+METHODS={'lagged_genie3_rf':'Lagged random forest', 'lagged_lasso':'Lagged LASSO', 'lagged_correlation':'Lagged correlation', 'dmd_operator':'Linear, raw units', 'static_correlation':'Static correlation', 'dmd_standardized':'Linear, standardized'}
 def benchmark_data():
     result={}
+    sensitivity = read_csv('benchmark-operator-scaling.csv')
     for dataset in ['dream4','boolode']:
         raw=read_csv(f'benchmark-{dataset}.csv')
+        scaled = {r['network']: r for r in sensitivity if r['dataset'].lower() == dataset}
+        identifier = 'network' if dataset == 'dream4' else 'replicate'
+        assert set(scaled) == {r[identifier] for r in raw}
+        for row in raw:
+            comparison = scaled[row[identifier]]
+            assert abs(float(row['dmd_operator']) - float(comparison['raw_ap'])) < 1e-12
+            row['dmd_standardized'] = comparison['standardized_ap']
         result[dataset]={'count':len(raw), 'methods':[{'id':k,'label':v,'mean':float(np.mean([float(r[k]) for r in raw])), 'values':[float(r[k]) for r in raw]} for k,v in METHODS.items()]}
     fig, axes=plt.subplots(1,2,figsize=(10.5,4.2),sharex=True)
     for ax, dataset, title in zip(axes,['dream4','boolode'],['DREAM4 · 5 networks','BoolODE · 18 datasets']):
         m=sorted(result[dataset]['methods'],key=lambda x:x['mean'],reverse=True)
         for i,r in enumerate(m):
-            color=RUST if r['id']=='dmd_operator' else GREEN
+            color=RUST if r['id'] in ('dmd_operator', 'dmd_standardized') else GREEN
             ax.barh(i,r['mean'],color=color,height=.48,alpha=.85)
             ax.text(r['mean']+.008,i,f"{r['mean']:.3f}",va='center',fontsize=9)
-        ax.set(yticks=range(5),yticklabels=[x['label'] for x in m],xlim=(0,.66),xlabel='Mean average precision',title=title)
+        ax.set(yticks=range(len(m)),yticklabels=[x['label'] for x in m],xlim=(0,.7),xlabel='Mean average precision',title=title)
         ax.invert_yaxis()
     fig.tight_layout(w_pad=3)
     save(fig,'network-benchmarks')
@@ -228,16 +240,17 @@ def transfer_data():
     return result
 
 def geometry_figures():
-    rows=read_csv('color-discovery.csv')
-    values=[float(next(r for r in rows if r['method']==method)['color_cosine'])
-            for method in ['within-class diffs (class labels)','raw ICA (no labels)']]
-    assert values==[.826,.716]
-    fig,ax=plt.subplots(figsize=(8.5,2.6))
-    ax.barh([0,1],values,height=.45,color=[GREEN,BLUE])
-    for row,value in enumerate(values):ax.text(value+.022,row,f'{value:.3f}',va='center',fontsize=13)
-    ax.set(yticks=[0,1],yticklabels=['Uses shape labels','ICA without labels'],xlim=(0,1.05),
-           xticks=[0,.25,.5,.75,1],xlabel='Alignment with the color reference · higher is closer')
-    ax.invert_yaxis();ax.grid(axis='x',alpha=.15);ax.set_axisbelow(True)
+    batches = [r for r in read_csv('color-alignment-runs.csv') if int(r['seed_stride']) == 192]
+    assert len({r['seed'] for r in batches}) == len(batches) == 20
+    differences = sorted(float(r['within_shape_color']) - float(r['raw_image_color']) for r in batches)
+    fig, ax = plt.subplots(figsize=(8.5, 3.5))
+    ax.axhline(0, color=MUTED, lw=1)
+    ax.scatter(range(1, 21), differences, c=[GREEN if delta > 0 else BLUE for delta in differences],
+               s=42, zorder=3)
+    ax.set(xlim=(.4, 20.6), xticks=[1, 5, 10, 15, 20], xlabel='Image batches, ordered by difference',
+           ylabel='Difference in color alignment')
+    ax.grid(axis='y', alpha=.17)
+    ax.set_axisbelow(True)
     fig.tight_layout();save(fig,'color-discovery')
     d=np.load(DATA/'geometry-examples.npz')
     # One common learned direction; all digit classes were present during fitting.

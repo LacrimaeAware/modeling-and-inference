@@ -71,3 +71,9 @@
 .brightness-grid figcaption span{display:block;margin-top:5px;color:var(--muted)}
 .brightness-grid img{display:block;width:100%;image-rendering:pixelated;background:#000}
 @media(max-width:680px){.brightness-grid{grid-template-columns:1fr 1fr;padding:0 16px 20px;gap:22px 12px}.brightness-grid figcaption{min-height:74px}.brightness-grid figcaption strong{font-size:12px}.brightness-grid figcaption span{font-size:11px}}
+
+.digit-results{width:100%;border-collapse:collapse;margin:18px 0;font-size:clamp(.81rem,1.3vw,.96rem);line-height:1.4;font-variant-numeric:tabular-nums}
+.digit-results th,.digit-results td{padding:12px 8px;text-align:right;border-bottom:1px solid var(--line)}
+.digit-results th:first-child{padding-left:clamp(12px,2vw,24px);text-align:left;width:43%}
+.digit-results th:last-child,.digit-results td:last-child{padding-right:clamp(12px,2vw,24px)}
+.digit-results th{font-weight:600}.digit-results tbody th{font-weight:400}

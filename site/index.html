@@ -6,8 +6,8 @@
     </div>
     <nav class="contents" aria-label="Studies">
       <a href="#rates"><span>01</span><div><strong>Biological mechanisms</strong><small>Designing an input that separates two models.</small></div><b aria-hidden="true">↗</b></a>
-      <a href="#networks"><span>02</span><div><strong>Gene networks</strong><small>Comparing recovered connections with a known network.</small></div><b aria-hidden="true">↗</b></a>
-      <a href="#representations"><span>03</span><div><strong>Image variation</strong><small>Comparing examples of the same digit.</small></div><b aria-hidden="true">↗</b></a>
+      <a href="#networks"><span>02</span><div><strong>Gene networks</strong><small>Testing how preprocessing changes edge rankings.</small></div><b aria-hidden="true">↗</b></a>
+      <a href="#representations"><span>03</span><div><strong>Image variation</strong><small>Testing a classifier when blur stops predicting the label.</small></div><b aria-hidden="true">↗</b></a>
     </nav>
   </section>
 
@@ -32,32 +32,35 @@
   <section class="network-band">
     <div class="study wrap" id="networks">
       <div class="study-copy">
-        <h2>When does removing <br>shared activity help?</h2>
-        <p>Many genes respond together. That shared activity can obscure which genes directly influence others, a central problem in <a href="https://doi.org/10.1038/s41592-019-0690-6">gene-network inference</a>.</p>
-        <p>In the simulation, the true connections are known. Vary the noise and compare the rankings before and after removing shared activity.</p>
-        <a class="text-link" href="studies/gene-networks.html">Network comparisons <span>↗</span></a>
+        <h2>Does preprocessing change which method ranks first?</h2>
+        <p>Each simulated dataset includes gene-expression measurements and the network that generated them. A linear model ranks possible connections by the size of its fitted coefficients.</p>
+        <p>In raw units, the model trailed the leading comparison method on both benchmarks. Centering and scaling each gene put it ahead on both, using the same observations and reference edges.</p>
+        <p>Reading the same observation pairs backward sharply reduced the standardized model’s score on DREAM4. On BoolODE, its score changed little.</p>
+        <a class="text-link" href="studies/gene-networks.html#benchmarks">Compare the rankings and the time-order test <span>↗</span></a>
       </div>
       <div class="experiment network-experiment">
-        <div class="experiment-heading"><strong>Connection rankings</strong><span class="small-label">100 simulated genes</span></div>
-        <div class="network-tools"><label for="signal-noise">Specific signal / noise<select id="signal-noise"><option value="4">4 · stronger signal</option><option value="2" selected>2</option><option value="0.5">0.5</option><option value="0.2">0.2</option><option value="0.05">0.05 · weaker signal</option></select></label><p>Each point averages five simulated networks. Change the signal level to compare the same two methods.</p></div>
-        <div id="recovery-chart" class="chart"><img class="fallback" src="assets/network-recovery.svg" alt="Network recovery decreases with noise. Removing the largest component reduces the effect of shared activity." width="1050" height="460"></div>
-        <div class="legend"><span><i class="raw"></i>Raw responses</span><span><i class="cleaned"></i>Shared component removed</span></div>
-        <p class="experiment-verdict" id="network-verdict" aria-live="polite">Compare the recovery scores as shared activity increases.</p>
-        <p class="fineprint">Score: average precision normalized to the edge-density baseline. 0 = baseline; 1 = perfect ranking. Simulated rank-1 shared component.</p>
+        <div class="experiment-heading"><strong>Ranking known connections</strong><span class="small-label">Simulated networks</span></div>
+        <div class="network-tools"><label for="benchmark-dataset">Dataset<select id="benchmark-dataset"><option value="dream4">DREAM4</option><option value="boolode">BoolODE</option></select></label><p>Higher average precision means more known connections appear near the top of the ranking.</p></div>
+        <div class="chart" id="benchmark-chart"><img class="fallback" src="assets/network-benchmarks.svg" alt="Across both benchmarks, the linear model ranks higher after its inputs and responses are standardized." width="1050" height="420"></div>
+        <p class="fineprint" id="benchmark-caption" aria-live="polite">Each score averages the results for the networks in one benchmark.</p>
       </div>
     </div>
   </section>
 
   <section class="study wrap" id="representations">
     <div class="study-copy">
-      <h2>Can variation within a class<br>help a classifier?</h2>
-      <p>Digits with the same label differ in shape and stroke thickness. The experiment finds directions of variation within the classes and tests removing or weighting them before classification.</p>
+      <h2>When does removing variation help classify a digit?</h2>
+      <p>If training images of some digits are blurrier than others, blur can become a shortcut. What happens when the blur in the test images is independent of the digit label?</p>
       <a class="text-link" href="studies/image-representations.html#within-class">Digit, color and brightness experiments <span>↗</span></a>
     </div>
     <div class="experiment geometry-experiment">
-      <div class="experiment-heading"><strong>A fitted direction in three digits</strong><span class="small-label">8 × 8 images</span></div>
-      <img src="assets/within-class-geometry.svg" alt="Held-out digits 3, 5 and 8, shifted in both directions along the same variation axis fitted on training images." width="1050" height="960">
-      <p class="fineprint">The same direction, fitted using examples of 3, 5 and 8, is applied to new images of each digit.</p>
+      <div class="experiment-heading"><strong>Accuracy on held-out digits</strong><span class="small-label">Ten image splits</span></div>
+      <table class="digit-results"><thead><tr><th scope="col">Classifier</th><th scope="col">Class-linked training blur</th><th scope="col">Independent training blur</th></tr></thead><tbody>
+        <tr><th scope="row">Nearest mean</th><td>74.0%</td><td>93.2%</td></tr>
+        <tr><th scope="row">Nearest mean after removing 8 directions</th><td>82.3%</td><td>87.4%</td></tr>
+        <tr><th scope="row">Logistic regression</th><td>93.2%</td><td>96.5%</td></tr>
+      </tbody></table>
+      <p class="fineprint">The eight directions capture variation among training images of the same digit. Removing them helped only when training blur depended on the label.</p>
     </div>
   </section>
 

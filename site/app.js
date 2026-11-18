@@ -111,20 +111,41 @@ function brightness(data) {
   reduceMotion.addEventListener('change',()=>{if(reduceMotion.matches)stop();});draw();
 }
 
-function benchmarks(data){
-  if(!$('#benchmark-chart'))return;
-  function draw(){
-    const key=$('#benchmark-dataset').value,d=data[key],w=Math.max(290,$('#benchmark-chart').clientWidth-30),h=266;
-    const left=w<450?125:166, right=48, scale=v=>v/.8*(w-left-right);
-    const rows=[...d.methods].sort((a,b)=>b.mean-a.mean);
-    let out='';
-    for(const t of [0,.2,.4,.6,.8])out+=line(left+scale(t),20,left+scale(t),225)+text(left+scale(t),244,String(t),'benchmark-axis','middle');
-    rows.forEach((r,i)=>{const y=35+i*43,label=w<450&&r.id==='lagged_genie3_rf'?'Lagged forest':r.label;out+=text(left-10,y+4,label,'benchmark-label','end');out+=`<rect x="${left}" y="${y-10}" width="${scale(r.mean)}" height="20" rx="1" fill="${r.id==='dmd_operator'?'#b95238':'#367869'}"/>`;out+=text(left+scale(r.mean)+8,y+4,fmt(r.mean,3),'benchmark-label');});
-    out+=text((w+left-right)/2,264,'Mean average precision','benchmark-axis','middle');
-    $('#benchmark-chart').innerHTML=svg(w,h,out,`${key==='dream4'?'DREAM4':'BoolODE'} results. `+rows.map(r=>`${r.label}: ${fmt(r.mean,3)}`).join('. '));
-    $('#benchmark-caption').textContent=key==='dream4'?'Five 10-gene networks, time-ordered samples. Lagged random forest has the highest aggregate score.':'Eighteen simulated single-cell datasets, ordered by pseudotime. Lagged LASSO has the highest aggregate score.';
+function benchmarks(data) {
+  const chart = $('#benchmark-chart');
+  if (!chart) return;
+  const select = $('#benchmark-dataset');
+  function draw() {
+    const dataset = data[select.value];
+    const width = Math.max(250, chart.clientWidth - 18);
+    const left = width < 450 ? 126 : 156;
+    const right = 36;
+    const scale = v => v / .8 * (width - left - right);
+    const rows = [...dataset.methods].sort((a, b) => b.mean - a.mean);
+    const bottom = 20 + rows.length * 34;
+    let out = '';
+    for (const tick of [0, .2, .4, .6, .8]) {
+      const x = left + scale(tick);
+      out += line(x, 10, x, bottom) + text(x, bottom + 16, String(tick), 'benchmark-axis', 'middle');
+    }
+    rows.forEach((row, index) => {
+      const y = 26 + index * 34;
+      const label = width < 450 && row.id === 'lagged_genie3_rf' ? 'Lagged forest' : row.label;
+      const color = row.id.startsWith('dmd_') ? '#b95238' : '#367869';
+      out += text(left - 8, y + 4, label, 'benchmark-label', 'end');
+      out += `<rect x="${left}" y="${y - 8}" width="${scale(row.mean)}" height="16" rx="1" fill="${color}"/>`;
+      out += text(left + scale(row.mean) + 5, y + 4, fmt(row.mean, 3), 'benchmark-label');
+    });
+    out += text((width + left - right) / 2, bottom + 36, 'Mean average precision', 'benchmark-axis', 'middle');
+    const description = rows.map(row => row.label + ' ' + fmt(row.mean, 3)).join('. ');
+    chart.innerHTML = svg(width, bottom + 43, out, select.selectedOptions[0].text + '. ' + description);
+    $('#benchmark-caption').textContent = select.value === 'dream4'
+      ? 'Five networks with 10 genes each. Each adjacent pair comes from one simulated time series.'
+      : 'Six network structures with three replicates each. Adjacent cells are paired by pseudotime.';
   }
-  $('#benchmark-dataset').addEventListener('change',draw);new ResizeObserver(draw).observe($('#benchmark-chart'));draw();
+  select.addEventListener('change', draw);
+  new ResizeObserver(draw).observe(chart);
+  draw();
 }
 
 function inputDesign(data){

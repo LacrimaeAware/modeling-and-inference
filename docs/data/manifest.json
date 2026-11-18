@@ -1,5 +1,5 @@
 {
-  "evidence_date": "2026-09-12",
+  "evidence_date": "2026-11-17",
   "files": [
     {
       "file": "benchmark-boolode.csv",
@@ -8,6 +8,14 @@
     {
       "file": "benchmark-dream4.csv",
       "sha256": "48da12330c1a48dc4cc1e338e2c52b7d3ec12b13764104cbf1153d293f2a2d40"
+    },
+    {
+      "file": "benchmark-operator-scaling.csv",
+      "sha256": "83a82c539f6da809df11e8d283bf4751746483c73b16b2002b6a63f8412a3226"
+    },
+    {
+      "file": "benchmark-time-direction.csv",
+      "sha256": "9317bb911b2515ad2ae4037a639cdbb5182861f865903874e81d344259c9694f"
     },
     {
       "file": "brightness-seed-0.json",
@@ -44,6 +52,10 @@
     {
       "file": "classification.json",
       "sha256": "d2007fc09a5008c0fe40368f11af26f61fdae7dbbd361b82c4de283a871ca8d6"
+    },
+    {
+      "file": "color-alignment-runs.csv",
+      "sha256": "79d8608acecd457c82d1c452432481d2dc0cae9b68e04bc534d331609d25557e"
     },
     {
       "file": "color-discovery.csv",

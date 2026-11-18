@@ -1,38 +1,27 @@
 <main class="note study-page" id="main">
   <a class="back" href="../index.html#representations">← Back to the studies</a>
   <p class="eyebrow">03 · Geometry &amp; structured transforms</p>
-  <h1>Finding variation and testing image changes.</h1>
-  <nav class="chapter-nav" aria-label="Structure of this study">
-    <a href="#color-discovery"><span>01</span><strong>Color discovery</strong><small>Shape labels → color variation</small></a>
-    <a href="#within-class"><span>02</span><strong>Digit classification</strong><small>Digit labels → blur comparisons</small></a>
-    <a href="#encoder"><span>03</span><strong>Brightness prediction</strong><small>Image pairs → fitted rule</small></a>
+  <h1>How do image models handle blur, brightness and color?</h1>
+  <nav class="chapter-nav" aria-label="Sections in this study">
+    <a href="#within-class"><span>01</span><strong>Digit classification</strong><small>When blur predicts the label</small></a>
+    <a href="#encoder"><span>02</span><strong>Brightness prediction</strong><small>A rule fitted at one multiplier</small></a>
+    <a href="#color-discovery"><span>03</span><strong>Color alignment</strong><small>Comparing shapes in pairs</small></a>
   </nav>
 
-  <section class="research-chapter" id="color-discovery">
-    <header class="chapter-heading"><span class="chapter-number">01</span><div><p class="eyebrow">Shape labels supplied · color labels withheld</p><h2>Find color-related variation from examples.</h2></div></header>
-    <p>The experiment uses triangles, squares, pentagons, and hexagons in different colors and stroke thicknesses. It supplies the shape labels, then compares examples of the same shape. A statistical method called <strong>independent component analysis (ICA)</strong> looks for recurring patterns in those differences.</p>
-    <div class="transfer-flow"><div><small>Information supplied</small><strong>Images + shape labels</strong></div><span aria-hidden="true">→</span><div><small>Pattern found in the images</small><strong>A direction associated with color</strong></div></div>
-    <figure><img src="../assets/color-discovery.svg" alt="Alignment with the color reference: 0.826 for discovery using shape labels, compared with 0.716 for ICA without labels." width="1200" height="470"><figcaption>The best-matching component is compared with a reference built from red versus non-red examples. A score of 1 means exact alignment with that reference.</figcaption></figure>
-    <div class="finding-box"><strong>What was found</strong><p>Comparing within each shape improved alignment with the color reference from <strong>0.716 to 0.826</strong>, without color labels.</p></div>
-    <p>The recovered components contain traces of shape outlines, so adding a component to another image can leave ghost outlines. Color is only partially separated from shape.</p>
-    <p class="copy-note">One synthetic-data run. Both methods use PCA and ICA; only the within-shape method receives shape labels. <a href="../methods.html#color-discovery">Procedure and measurements →</a></p>
-    <p class="copy-note" id="cross-class">A separate <a href="../methods.html#color-control">color-rule control</a> fits a predefined RGB rotation from paired images and tests it on different shapes.</p>
-  </section>
-
   <section class="research-chapter" id="within-class">
-    <header class="chapter-heading"><span class="chapter-number">02</span><div><p class="eyebrow">Digit labels → patterns of variation</p><h2>Compare examples within the same class.</h2></div></header>
-    <p>Comparing one 3 with another holds the digit label fixed while exposing changes in appearance. A covariance calculation finds the largest such variations within the training classes.</p>
-    <figure><img src="../assets/within-class-geometry.svg" alt="The first held-out examples of digits 3, 5 and 8, moved in both directions along the same variation axis fitted on training data." width="1050" height="960"><figcaption><strong>One fitted direction, three held-out digits.</strong> The same leading variation direction is applied to a held-out 3, 5, and 8. All three classes occur in training. Columns move by −1.5, 0, and +1.5 training standard deviations; pixels are clipped for display. The data are 8×8 handwritten digits.</figcaption></figure>
-    <h3>Does using this geometry change classification?</h3>
-    <p>A classification test removes the selected variation directions before predicting the digit label. When training blur is misleadingly associated with the label, nearest-mean accuracy rises from <strong>74.0% to 82.3%</strong>. With independent blur it falls from 93.2% to 87.4%.</p>
-    <p class="copy-note">The study compares removal and weighting with LDA, logistic regression, nearest neighbors, and paired blur augmentation. Logistic regression reaches 93.2% in the correlated-blur setting; paired augmentation reaches 97.3%. <a href="../methods.html#classification">Full comparison and inputs →</a></p>
+    <header class="chapter-heading"><span class="chapter-number">01</span><div><p class="eyebrow">Handwritten digits · ten image splits</p><h2>What happens when blur stops predicting the digit?</h2></div></header>
+    <p>In one training condition, 3s were blurred more often than 5s or 8s. In the other, blur was independent of the digit. Both conditions used held-out test images with blur applied independently of the label.</p>
+    <p>A nearest-mean classifier assigns each image to the closest average digit. Removing eight directions of variation estimated within digit classes raised its mean test accuracy from <strong>74.0% to 82.3%</strong> when training blur was tied to the label. With independent training blur, the same change lowered accuracy from <strong>93.2% to 87.4%</strong>.</p>
+    <p>On the correlated-blur task, logistic regression reached <strong>93.2%</strong>. Training it on both sharp and blurred versions of each training image raised accuracy to <strong>97.3%</strong>.</p>
+    <figure><img src="../assets/within-class-geometry.svg" alt="Held-out images of a 3, a 5 and an 8, each moved along the same direction of variation." width="1050" height="960"><figcaption>The first direction of variation, fitted across the three training classes. Each row shows a held-out image shifted by −1.5, 0 and +1.5 training standard deviations along that direction. Pixels are clipped for display.</figcaption></figure>
+    <p class="copy-note"><a href="../methods.html#classification">All seven classifiers and the train/test splits →</a></p>
   </section>
 
   <section class="research-chapter" id="encoder">
-    <header class="chapter-heading"><span class="chapter-number">03</span><div><p class="eyebrow">Neural network · learned image coordinates</p><h2>How does a trained model represent brightness?</h2></div></header>
-    <p>A neural network compresses an image into 32 numbers and reconstructs it. A separate fit learns how to scale and shift those coordinates for a requested brightness change, then tests the rule on new images.</p>
+    <header class="chapter-heading"><span class="chapter-number">02</span><div><p class="eyebrow">Autoencoder · synthetic shapes</p><h2>How does a trained model represent brightness?</h2></div></header>
+    <p>An autoencoder compresses an image into 32 numbers. Across six brightness multipliers, a scaling rule fitted at 1.5× predicted how those coordinates changed more accurately than adding a common offset.</p>
     <h3>Request a 1.5× brighter image.</h3>
-    <p>The target multiplies every RGB intensity by 1.5. Compare the model’s ordinary reconstruction with its reconstruction after the brightness edit. The model can blur an image even when no edit is requested.</p>
+    <p>The target multiplies every RGB intensity by 1.5. Compare the model’s ordinary reconstruction with its reconstruction after the brightness edit. Compression itself can blur the image.</p>
     <div class="experiment image-experiment brightness-gallery">
       <div class="experiment-heading"><strong>Original, target, and two model outputs</strong><span class="small-label">32 × 32 pixels</span></div>
       <div class="image-toolbar"><label for="image-seed">Model run<select id="image-seed"><option value="0">Run 1</option><option value="1">Run 2</option><option value="2">Run 3</option></select></label><div class="example-select" role="group" aria-label="Image example"><button data-example="0" aria-pressed="true">1</button><button data-example="1" aria-pressed="false">2</button><button data-example="2" aria-pressed="false">3</button></div><button id="cycle-images" class="subtle-button" aria-pressed="false">▶ Cycle examples</button></div>
@@ -45,14 +34,21 @@
       <p class="experiment-verdict" id="image-verdict" aria-live="polite">Compare both model outputs with the brighter target.</p>
       <p class="fineprint">The images share the same display scale; pixel values are clipped to [0, 1] for display.</p>
     </div>
-    <p class="copy-note">Compared with simply brightening the ordinary reconstruction, the learned edit gave almost the same image error within the training brightness range and higher error outside it.</p>
     <h3>Does the rule transfer to other images and multipliers?</h3>
     <div class="formula-card"><p class="eyebrow">A scaling rule around a learned center</p><div class="math-block" data-tex="T_r(z)=c+r^{\alpha}(z-c)"></div><dl class="symbol-key"><div><dt>z</dt><dd>Encoded image</dd></div><div><dt>r</dt><dd>Brightness multiplier</dd></div><div><dt>c, α</dt><dd>Center and exponent fitted from pairs</dd></div></dl></div>
-    <p>A gain and offset fitted from paired images at a 1.5× brightness change define the rule. The test then applies that rule to new images at several brightness multipliers.</p>
+    <p>Nine image configurations supplied the 1.5× training pairs. Three trained encoders were each tested on 96 new configurations at six multipliers.</p>
     <figure><img src="../assets/brightness-transfer.svg" alt="Relative squared prediction error across six brightness multipliers, comparing a fitted scaling action with simpler rules and random encoders." width="1500" height="675"><figcaption>Smaller values mean a better prediction of the actual encoded change. The log axis separates methods spanning several orders of magnitude. Lines average three seeds and two starting brightness levels; bands span those six cells.</figcaption></figure>
-    <p>For these encoders, a scaling rule predicted brightness changes more closely than a shared additive shift.</p>
+    <p>For the decoded images, a simpler comparison is to brighten the ordinary reconstruction pixel by pixel. The learned edit had 1% lower squared pixel error on average within the training brightness range and 17% higher error outside it.</p>
   </section>
 
-  <div class="reading-links"><a href="../data/color-discovery.csv">Color-discovery measurements</a><a href="../data/brightness-transfer.csv">Encoder-transfer measurements</a><a href="../methods.html#representations">Methods, metrics &amp; references</a></div>
+  <section class="research-chapter" id="color-discovery">
+    <header class="chapter-heading"><span class="chapter-number">03</span><div><p class="eyebrow">Synthetic shapes · 20 image batches</p><h2>Does grouping images by shape help isolate color?</h2></div></header>
+    <p>Each batch contains triangles, squares, pentagons and hexagons in several colors and stroke widths. One fit uses differences between images of the same shape. The other uses the original images. Both use independent component analysis (ICA) to find six patterns of variation.</p>
+    <p>After fitting, each pattern is compared with the difference between the average red image and the average non-red image in that batch. The closest match averaged <strong>0.810</strong> for same-shape differences and <strong>0.794</strong> for the original images. Grouping by shape scored higher in <strong>13 of the 20 batches</strong>.</p>
+    <figure><img src="../assets/color-discovery.svg" alt="Grouping by shape gave a closer color match in 13 batches. Fitting ICA to the original images gave a closer match in seven." width="1200" height="470"><figcaption>Each dot is one batch. Values above zero favor grouping by shape. A difference of 0.1 is one tenth of the 0–1 alignment scale.</figcaption></figure>
+    <p class="copy-note" id="cross-class"><a href="../methods.html#color-discovery">Alignment scores and sampling procedure</a> · <a href="../methods.html#color-control">A separate test of a prescribed color rotation</a></p>
+  </section>
+
+  <div class="reading-links"><a href="../data/classification.json">Digit predictions</a><a href="../data/brightness-transfer.csv">Encoder-transfer measurements</a><a href="../data/color-alignment-runs.csv">Color alignment by run</a></div>
   <div class="note-nav"><a href="gene-networks.html">← Gene-network recovery</a><a href="../methods.html#representations">Methods &amp; data →</a></div>
 </main>
